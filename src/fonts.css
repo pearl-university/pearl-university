@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Outfit';
+  src: url('./assets/fonts/Outfit-VariableFont_wght.ttf') format('truetype-variations'),
+    url('./assets/fonts/Outfit-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('./assets/fonts/LibreBaskerville-VariableFont_wght.ttf') format('truetype-variations'),
+    url('./assets/fonts/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Libre Baskerville', Georgia, serif;
+}
+
+@theme {
+  --font-body: 'Outfit', sans-serif;
+  --font-heading: 'Libre Baskerville', serif;
+}
+
+html,
+body {
+  font-family: var(--font-body);
+  /* color: #000000; */
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  /* color: #000000; */
+  font-weight: 500;
+}
