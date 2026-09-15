@@ -70,7 +70,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
               initial={{ y: '100%', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[38px] xs:text-[44px] sm:text-[54px] md:text-6xl lg:text-[70px] xl:text-[78px] font-heading font-medium leading-[1.08] sm:leading-[1.1] md:leading-[1.12] text-white tracking-[-0.025em] drop-shadow-md"
+              className="text-[38px] xs:text-[44px] sm:text-[54px] md:text-6xl lg:text-[80px] xl:text-[92px] 2xl:text-[98px] font-heading font-medium leading-[1.08] sm:leading-[1.1] md:leading-[1.12] lg:leading-[1.06] xl:leading-[1.04] text-white tracking-[-0.025em] drop-shadow-md"
             >
               {title}
             </motion.h1>
