@@ -13,8 +13,10 @@ export const HomePage: FC = () => {
     <div className="w-full flex flex-col">
       <SEO />
       <HeroSection />
+      <div className='my-12' />
       {/* <MarqueeTicker /> */}
       <FacultiesSection />
+      <div className='my-12' />
       <AcademicProgramsSection />
       <PortalsSection />
       <NewsAndEventsSection />

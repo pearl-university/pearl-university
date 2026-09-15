@@ -32,12 +32,12 @@ export const HeroSection: FC<HeroSectionProps> = ({
   alt = 'Pearl University Campus',
   title = (
     <>
-      Building Value Through
+      Welcome To
       <br className="hidden sm:inline" />{' '}
-      Learning, Research and Impact
+      Pearl University
     </>
   ),
-  description = 'Pearl University advances knowledge through rigorous learning, relevant research, and purposeful innovation, equipping students with the intellectual depth, practical capability, and character to create meaningful impact in an evolving world.',
+  description = 'Welcome to Pearl University, an academic community dedicated to building value through rigorous learning, purposeful innovation, and a commitment to developing graduates equipped to contribute meaningfully to society, industry, and the future.',
   stats = DEFAULT_STATS,
   ctaText = 'Explore →',
   ctaLink = '/academics',
@@ -103,11 +103,9 @@ export const HeroSection: FC<HeroSectionProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
               whileHover={{ backgroundColor: 'rgba(24, 27, 22, 0.95)' }}
-              className={`bg-[#181b16]/85 backdrop-blur-md px-6 py-6 md:py-8 lg:py-10 flex flex-col justify-center border-r border-white/15 transition-colors ${
-                index === 1 ? 'border-r-0 lg:border-r' : ''
-              } ${index === 2 ? 'border-t lg:border-t-0' : ''} ${
-                index === 3 ? 'border-t lg:border-t-0' : ''
-              }`}
+              className={`bg-[#181b16]/85 backdrop-blur-md px-6 py-6 md:py-8 lg:py-10 flex flex-col justify-center border-r border-white/15 transition-colors ${index === 1 ? 'border-r-0 lg:border-r' : ''
+                } ${index === 2 ? 'border-t lg:border-t-0' : ''} ${index === 3 ? 'border-t lg:border-t-0' : ''
+                }`}
             >
               <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none">
                 <CountUpNumber target={stat.value} duration={1.5} suffix={stat.suffix} />
@@ -123,7 +121,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
             to={ctaLink}
             className="col-span-2 sm:col-span-2 lg:col-span-1 bg-white text-black hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 px-8 py-6 md:py-8 lg:py-10 flex items-center justify-center group focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-900 cursor-pointer"
           >
-            <span className="text-xl sm:text-2xl md:text-[26px] font-bold tracking-tight group-hover:translate-x-1.5 transition-transform duration-200">
+            <span className="font-[500] text-xl sm:text-2xl md:text-[26px] tracking-tight group-hover:translate-x-1.5 transition-transform duration-200">
               {ctaText}
             </span>
           </Link>
