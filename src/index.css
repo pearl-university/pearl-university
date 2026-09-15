@@ -5,6 +5,11 @@
 html.lenis,
 html.lenis body {
   height: auto;
+  scroll-behavior: auto !important;
+}
+
+html {
+  scroll-behavior: auto !important;
 }
 
 html,

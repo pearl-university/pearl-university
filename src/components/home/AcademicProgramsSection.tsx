@@ -257,10 +257,19 @@ export const AcademicProgramsSection: FC = () => {
       ? Math.max(0, currentProgress - stepFraction)
       : Math.min(1, currentProgress + stepFraction)
 
-    window.scrollTo({
-      top: sectionTop + nextProgress * totalScrollable,
-      behavior: 'smooth',
-    })
+    const targetScrollY = sectionTop + nextProgress * totalScrollable
+
+    if (window.lenisApp) {
+      window.lenisApp.scrollTo(targetScrollY, {
+        duration: 0.9,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
+      })
+    } else {
+      window.scrollTo({
+        top: targetScrollY,
+        behavior: 'smooth',
+      })
+    }
   }
 
   const cardWidth = 380
