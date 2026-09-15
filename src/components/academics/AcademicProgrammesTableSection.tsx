@@ -203,7 +203,7 @@ export const AcademicProgrammesTableSection: FC = () => {
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
+          viewport={{ once: false, margin: '-40px' }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-normal leading-[1.2] text-black tracking-[-0.01em]">
             Academic Programmes
@@ -215,7 +215,7 @@ export const AcademicProgrammesTableSection: FC = () => {
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
+          viewport={{ once: false, margin: '-40px' }}
           className="flex flex-wrap items-center gap-3 sm:gap-4"
         >
           {/* Level Filter Pills */}

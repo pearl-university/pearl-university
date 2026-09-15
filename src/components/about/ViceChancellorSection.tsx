@@ -15,7 +15,7 @@ export const ViceChancellorSection: FC = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-normal leading-[1.18] text-black tracking-[-0.01em]"
             >
               A Message from the
@@ -29,7 +29,7 @@ export const ViceChancellorSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.1 }}
             className="text-base sm:text-lg font-medium text-black mt-6 sm:mt-8"
           >
@@ -41,7 +41,7 @@ export const ViceChancellorSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.2 }}
             className="space-y-4 sm:space-y-4.5 text-xs sm:text-sm md:text-[14.5px] leading-[1.72] text-gray-800 font-normal mt-4"
           >
@@ -81,7 +81,7 @@ export const ViceChancellorSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.3 }}
             className="mt-8 pt-6 border-t border-gray-100 flex flex-col"
           >
@@ -113,7 +113,7 @@ export const ViceChancellorSection: FC = () => {
               scale: 1.02,
               transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
             }}
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{
               transformPerspective: 1200,

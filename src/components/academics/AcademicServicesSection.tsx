@@ -66,7 +66,7 @@ export const AcademicServicesSection: FC = () => {
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: false, margin: '-50px' }}
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-normal leading-[1.2] text-black tracking-[-0.01em]">
@@ -109,7 +109,7 @@ export const AcademicServicesSection: FC = () => {
                   scale: 1.02,
                   transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
                 }}
-                viewport={{ once: true, margin: '-40px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{
                   duration: 0.85,
                   delay: index * 0.15,

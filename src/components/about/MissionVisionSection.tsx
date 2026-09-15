@@ -16,7 +16,7 @@ export const MissionVisionSection: FC = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-normal leading-[1.18] text-black tracking-[-0.01em]"
             >
               Building Value Through
@@ -30,7 +30,7 @@ export const MissionVisionSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.15 }}
             className="lg:col-span-6 lg:pt-2"
           >
@@ -56,7 +56,7 @@ export const MissionVisionSection: FC = () => {
                 rotateZ: 1.5,
                 scale: 1,
               }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 transformPerspective: 1200,
@@ -82,7 +82,7 @@ export const MissionVisionSection: FC = () => {
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: '-40px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{ delay: 0.15 }}
                 className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300 border border-black/5"
               >
@@ -106,7 +106,7 @@ export const MissionVisionSection: FC = () => {
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: '-40px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{ delay: 0.25 }}
                 className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300 border border-black/5"
               >
@@ -131,7 +131,7 @@ export const MissionVisionSection: FC = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               transition={{ delay: 0.35 }}
               className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300 border border-black/5"
             >

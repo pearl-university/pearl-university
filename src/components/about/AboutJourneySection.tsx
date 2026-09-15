@@ -12,7 +12,7 @@ export const AboutJourneySection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-normal leading-[1.18] text-black tracking-[-0.01em]"
           >
             A Journey Shaped by Purpose
@@ -28,7 +28,7 @@ export const AboutJourneySection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.15 }}
             className="text-lg sm:text-xl md:text-[22px] lg:text-[24px] font-medium leading-[1.38] text-black tracking-[-0.01em]"
           >
@@ -42,7 +42,7 @@ export const AboutJourneySection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.25 }}
             className="text-sm sm:text-base md:text-[16px] leading-[1.7] text-black/80 font-normal mt-6 sm:mt-8"
           >

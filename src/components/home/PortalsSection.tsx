@@ -62,7 +62,7 @@ export const PortalsSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             className="flex flex-col"
           >
             <h2 className="text-3xl sm:text-4xl md:text-[42px] lg:text-[46px] font-normal leading-[1.18] text-black tracking-[-0.01em]">
@@ -90,7 +90,7 @@ export const PortalsSection: FC = () => {
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: '-30px' }}
+                viewport={{ once: false, margin: '-30px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 transition-all duration-300 flex flex-col justify-between group ${
                   isDark

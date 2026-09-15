@@ -32,7 +32,7 @@ export const NewsAndEventsSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             className="mb-6 sm:mb-8 shrink-0"
           >
             <span className="text-lg sm:text-xl font-normal text-black font-heading">
@@ -75,7 +75,7 @@ export const NewsAndEventsSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             className="mb-8 sm:mb-12"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal leading-[1.18] text-black tracking-[-0.01em]">

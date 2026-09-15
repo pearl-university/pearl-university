@@ -16,7 +16,7 @@ export const ApproachSection: FC = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: false, margin: '-40px' }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-normal leading-[1.18] text-black tracking-[-0.01em]"
             >
               A Distinctive Approach to
@@ -30,7 +30,7 @@ export const ApproachSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: 0.15 }}
             className="lg:col-span-6 lg:pt-2"
           >
@@ -56,7 +56,7 @@ export const ApproachSection: FC = () => {
                 rotateZ: 1.5,
                 scale: 1,
               }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 transformPerspective: 1200,
@@ -87,7 +87,7 @@ export const ApproachSection: FC = () => {
                   rotateZ: -1.5,
                   scale: 1,
                 }}
-                viewport={{ once: true, margin: '-40px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   transformPerspective: 1200,
@@ -109,7 +109,7 @@ export const ApproachSection: FC = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               transition={{ delay: 0.25 }}
             >
               <p className="text-sm sm:text-base md:text-[17px] leading-relaxed text-black/85 font-normal max-w-xl">

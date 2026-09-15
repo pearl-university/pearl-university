@@ -336,7 +336,7 @@ export const ExperienceGallerySection: FC = () => {
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-14"
         >
           <div>
@@ -364,7 +364,7 @@ export const ExperienceGallerySection: FC = () => {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           className="w-full grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 md:gap-5"
         >
           {/* Left Column (8 cols): Top Row (2 Cards) + Bottom Row (1 Wide Card) */}

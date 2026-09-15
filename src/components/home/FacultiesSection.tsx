@@ -319,7 +319,7 @@ export const FacultiesSection: FC = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             className="max-w-4xl mx-auto text-center mb-10 sm:mb-14 md:mb-18 shrink-0"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-normal leading-[1.22] text-black tracking-[-0.01em]">
