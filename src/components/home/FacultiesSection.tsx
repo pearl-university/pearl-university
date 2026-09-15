@@ -312,7 +312,7 @@ export const FacultiesSection: FC = () => {
       className="relative w-full bg-white lg:h-[235vh]"
     >
       {/* Sticky Viewport Container on Desktop */}
-      <div className="w-full py-16 sm:py-24 lg:py-0 lg:sticky lg:top-0 lg:h-screen lg:flex lg:items-center px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden bg-white">
+      <div className="w-full py-16 sm:py-24 lg:py-8 lg:sticky lg:top-0 lg:h-screen lg:flex lg:items-center px-4 sm:px-6 md:px-8 lg:px-12 bg-white">
         <div className="w-full max-w-7xl mx-auto flex flex-col justify-center">
           {/* Section Heading */}
           <motion.div
@@ -320,9 +320,9 @@ export const FacultiesSection: FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, margin: '-40px' }}
-            className="max-w-4xl mx-auto text-center mb-10 sm:mb-14 md:mb-18 shrink-0"
+            className="max-w-4xl mx-auto text-center mb-10 sm:mb-14 md:mb-16 shrink-0 pt-3 pb-1.5"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-normal leading-[1.22] text-black tracking-[-0.01em]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-normal leading-[1.28] text-black tracking-[-0.01em] py-1">
               Built Around the Future of Knowledge,
               <br />
               Research and Innovation
