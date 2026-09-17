@@ -1,4 +1,4 @@
-import img5 from '../assets/images/home/img5.webp'
+import img5 from '../assets/images/home/img5.png'
 import img6 from '../assets/images/home/img6.webp'
 import img11 from '../assets/images/home/img11.webp'
 import img12 from '../assets/images/home/img12.webp'

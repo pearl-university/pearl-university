@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { SEO } from '../components/common/SEO'
 import { HeroSection } from '../components/home/HeroSection'
-import academicsHeroImg from '../assets/images/academics/img1.webp'
+import academicsHeroImg from '../assets/images/academics/img1.png'
 import { ApproachSection } from '../components/academics/ApproachSection'
 import { AcademicServicesSection } from '../components/academics/AcademicServicesSection'
 import { AcademicProgrammesTableSection } from '../components/academics/AcademicProgrammesTableSection'

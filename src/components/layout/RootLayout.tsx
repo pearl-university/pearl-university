@@ -4,6 +4,9 @@ import { Navbar } from '../common/Navbar'
 import { Footer } from '../common/Footer'
 import { SmoothScroll } from './SmoothScroll'
 import { ScrollToTop } from './ScrollToTop'
+import { AlertToastsContainer } from '../ui/AlertToasts'
+import { BottomPillLoader } from '../ui/BottomPillLoader'
+import { ConfirmModal } from '../ui/ConfirmModal'
 
 export const RootLayout: FC = () => {
   return (
@@ -17,7 +20,14 @@ export const RootLayout: FC = () => {
         </main>
 
         <Footer />
+
+        {/* Global Basic UI Elements */}
+        <BottomPillLoader />
+        <AlertToastsContainer />
+        <ConfirmModal />
       </div>
     </SmoothScroll>
   )
 }
+
+

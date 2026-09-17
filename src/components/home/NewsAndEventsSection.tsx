@@ -22,7 +22,7 @@ export const NewsAndEventsSection: FC = () => {
     <section
       id="news-and-events-section"
       data-hide-nav="true"
-      className="w-full bg-[#EDE6F1] py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 transition-colors overflow-visible"
+      className="w-full bg-[#ECE0EF] py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 transition-colors overflow-visible"
     >
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start relative">
         {/* Left Column: Sticky "News and Event" Title & Scrollable Category Navigation */}

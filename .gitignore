@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Static books asset directory (hosted on Supabase Storage CDN)
+src/assets/books/
+src/assets/books/**
+books/
+*.pdf
+*.tmp.pdf

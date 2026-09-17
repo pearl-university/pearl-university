@@ -6,7 +6,7 @@ import { fadeInUp } from '../../utils/motion'
 
 export const MissionVisionSection: FC = () => {
   return (
-    <section className="w-full bg-[#EDE6F1] py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
+    <section className="w-full bg-[#ECE0EF] py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
       <div className="w-full max-w-7xl mx-auto flex flex-col gap-10 sm:gap-14 md:gap-16">
         {/* Header: Title on Left, Description on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-14 items-start">
@@ -87,7 +87,7 @@ export const MissionVisionSection: FC = () => {
                 className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300 border border-black/5"
               >
                 <div>
-                  <div className="w-11 h-11 rounded-full bg-[#EDE6F1] flex items-center justify-center text-black mb-5 sm:mb-6">
+                  <div className="w-11 h-11 rounded-full bg-[#ECE0EF] flex items-center justify-center text-black mb-5 sm:mb-6">
                     <FiFlag className="w-5 h-5" />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-heading font-normal text-black leading-snug">
@@ -111,7 +111,7 @@ export const MissionVisionSection: FC = () => {
                 className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300 border border-black/5"
               >
                 <div>
-                  <div className="w-11 h-11 rounded-full bg-[#EDE6F1] flex items-center justify-center text-black mb-5 sm:mb-6">
+                  <div className="w-11 h-11 rounded-full bg-[#ECE0EF] flex items-center justify-center text-black mb-5 sm:mb-6">
                     <FiEye className="w-5 h-5" />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-heading font-normal text-black leading-snug">
@@ -136,7 +136,7 @@ export const MissionVisionSection: FC = () => {
               className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300 border border-black/5"
             >
               <div>
-                <div className="w-11 h-11 rounded-full bg-[#EDE6F1] flex items-center justify-center text-black mb-5 sm:mb-6">
+                <div className="w-11 h-11 rounded-full bg-[#ECE0EF] flex items-center justify-center text-black mb-5 sm:mb-6">
                   <FiTarget className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-heading font-normal text-black leading-snug">

@@ -104,7 +104,7 @@ export const Footer: FC = () => {
               </Link>
             </li>
             <li>
-              <Link to="/portals" className="text-sm sm:text-[15px] text-gray-300/90 hover:text-white transition-colors">
+              <Link to="/library" className="text-sm sm:text-[15px] text-gray-300/90 hover:text-white transition-colors">
                 Library & E-Library
               </Link>
             </li>

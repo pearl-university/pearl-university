@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import defaultHeroImg from '../../assets/images/home/img1.webp'
+import defaultHeroImg from '../../assets/images/home/img1.png'
 import { CountUpNumber } from '../common/CountUpNumber'
 
 export interface StatItem {

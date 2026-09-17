@@ -44,7 +44,7 @@ const PORTALS: PortalCard[] = [
     description:
       'Access digital books, journals, databases, research materials, and academic resources that support learning, teaching, and scholarly discovery.',
     buttonText: 'Access Resources',
-    buttonLink: '/portals',
+    buttonLink: '/library',
     icon: HiOutlineBookOpen,
   },
 ]
