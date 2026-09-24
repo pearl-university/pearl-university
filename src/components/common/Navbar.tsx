@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { HiBars3, HiXMark } from 'react-icons/hi2'
 import logoSvg from '../../assets/logo.svg'
@@ -20,46 +20,59 @@ const NAV_ITEMS: NavItem[] = [
 ]
 
 export const Navbar: FC = () => {
+  const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOverHero, setIsOverHero] = useState(true)
   const [hidden, setHidden] = useState(false)
 
-  // Track scroll for subtle shadow & sticky background, and hide over specified sections
+  // Track scroll position, check if navbar is over HeroSection, and handle hide-nav targets
   useEffect(() => {
     let animationFrameId: number
 
-    const checkNavVisibility = () => {
-      setScrolled(window.scrollY > 20)
+    const checkNavbarState = () => {
+      const hero =
+        document.querySelector('[data-hero-section="true"]') ||
+        document.getElementById('hero-section')
 
+      if (hero) {
+        const rect = hero.getBoundingClientRect()
+        // If the bottom of the hero section is still below navbar height (~80px)
+        setIsOverHero(rect.bottom > 80)
+      } else {
+        // If there's no hero section on the current page, always use solid white theme
+        setIsOverHero(false)
+      }
+
+      // Check for elements that request hiding the navbar entirely (e.g. specialized full-bleed viewers)
       const hideTargets = document.querySelectorAll('[data-hide-nav="true"]')
       let shouldHide = false
-
       hideTargets.forEach((el) => {
         const rect = el.getBoundingClientRect()
-        // If the top of the section is near/above the navbar and bottom is still visible
         if (rect.top <= 100 && rect.bottom >= 30) {
           shouldHide = true
         }
       })
-
       setHidden(shouldHide)
     }
 
     const onScroll = () => {
       cancelAnimationFrame(animationFrameId)
-      animationFrameId = requestAnimationFrame(checkNavVisibility)
+      animationFrameId = requestAnimationFrame(checkNavbarState)
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
-    checkNavVisibility()
+    // Run immediate check and delayed check (to allow DOM mounting of new route's hero)
+    checkNavbarState()
+    const timeoutId = setTimeout(checkNavbarState, 60)
 
     return () => {
+      clearTimeout(timeoutId)
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
     }
-  }, [])
+  }, [location.pathname])
 
   // Lock body scroll when mobile offcanvas is active
   useEffect(() => {
@@ -87,10 +100,10 @@ export const Navbar: FC = () => {
           opacity: hidden ? 0 : 1,
         }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className={`sticky top-0 z-40 w-full transition-colors duration-200 ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-gray-100'
-            : 'bg-white border-b border-gray-100/60'
+        className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ${
+          isOverHero
+            ? 'bg-transparent border-b border-transparent text-white'
+            : 'bg-white/95 backdrop-blur-md shadow-xs border-b border-gray-100 text-gray-900'
         }`}
       >
         <div className="w-full px-4 sm:px-6 md:px-8">
@@ -107,15 +120,31 @@ export const Navbar: FC = () => {
                 alt="Pearl University Crest"
                 className="h-12 w-12 md:h-14 md:w-14 object-contain transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="h-10 w-[1.5px] bg-gray-300/80" />
+              <div
+                className={`h-10 w-[1.5px] transition-colors duration-300 ${
+                  isOverHero ? 'bg-white/40' : 'bg-gray-300/80'
+                }`}
+              />
               <div className="flex flex-col text-left">
-                <span className="font-heading text-sm md:text-base font-bold tracking-[0.08em] text-[#200441] leading-tight">
+                <span
+                  className={`font-heading text-sm md:text-base font-bold tracking-[0.08em] leading-tight transition-colors duration-300 ${
+                    isOverHero ? 'text-white drop-shadow-sm' : 'text-[#200441]'
+                  }`}
+                >
                   PEARL
                 </span>
-                <span className="font-heading text-xs md:text-sm font-semibold tracking-[0.14em] text-[#200441] leading-tight">
+                <span
+                  className={`font-heading text-xs md:text-sm font-semibold tracking-[0.14em] leading-tight transition-colors duration-300 ${
+                    isOverHero ? 'text-white drop-shadow-sm' : 'text-[#200441]'
+                  }`}
+                >
                   UNIVERSITY
                 </span>
-                <span className="text-[10px] md:text-[11px] font-normal text-gray-500 tracking-normal mt-0.5 leading-none">
+                <span
+                  className={`text-[10px] md:text-[11px] font-normal tracking-normal mt-0.5 leading-none transition-colors duration-300 ${
+                    isOverHero ? 'text-white/80' : 'text-gray-500'
+                  }`}
+                >
                   Building value
                 </span>
               </div>
@@ -129,9 +158,13 @@ export const Navbar: FC = () => {
                   to={item.href}
                   className={({ isActive }) =>
                     `text-base font-medium transition-colors duration-200 relative py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-900 rounded ${
-                      isActive
+                      isOverHero
+                        ? isActive
+                          ? 'text-white font-semibold drop-shadow-sm'
+                          : 'text-white/85 hover:text-white drop-shadow-sm'
+                        : isActive
                         ? 'text-[#200441] font-semibold'
-                        : 'text-gray-500 hover:text-[#200441]'
+                        : 'text-gray-600 hover:text-[#200441]'
                     }`
                   }
                 >
@@ -141,7 +174,9 @@ export const Navbar: FC = () => {
                       {isActive && (
                         <motion.div
                           layoutId="nav-active-pill"
-                          className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#200441] rounded-full"
+                          className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-colors duration-300 ${
+                            isOverHero ? 'bg-white' : 'bg-[#200441]'
+                          }`}
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -156,7 +191,11 @@ export const Navbar: FC = () => {
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-lg text-gray-800 hover:text-[#200441] hover:bg-gray-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-900 cursor-pointer"
+                className={`p-2.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-900 cursor-pointer ${
+                  isOverHero
+                    ? 'text-white hover:bg-white/15'
+                    : 'text-gray-800 hover:text-[#200441] hover:bg-gray-100'
+                }`}
                 aria-expanded={isOpen}
                 aria-controls="mobile-navigation"
                 aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -172,7 +211,7 @@ export const Navbar: FC = () => {
         </div>
       </motion.header>
 
-      {/* Mobile Offcanvas Drawer - Mounted outside header to prevent any stacking context issues */}
+      {/* Mobile Offcanvas Drawer */}
       <AnimatePresence>
         {isOpen && (
           <div
@@ -190,7 +229,7 @@ export const Navbar: FC = () => {
               aria-hidden="true"
             />
 
-            {/* Slide-out Panel (100dvh full viewport height) */}
+            {/* Slide-out Panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}

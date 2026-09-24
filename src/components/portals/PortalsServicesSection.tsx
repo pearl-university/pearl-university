@@ -28,7 +28,7 @@ const PORTALS: PortalCard[] = [
     description:
       'Access essential academic services, including course registration, semester results, fee verification, and secure management of your bio-data profile.',
     buttonText: 'Access Dashboard',
-    buttonLink: '#student-portal',
+    buttonLink: '/student-portal',
     isDark: true,
     icon: <HiAcademicCap className="w-5 h-5 text-black" />,
     slant: { rotateX: 4, rotateY: -5, rotateZ: 1 },

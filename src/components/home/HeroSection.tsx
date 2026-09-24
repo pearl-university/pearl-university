@@ -43,7 +43,11 @@ export const HeroSection: FC<HeroSectionProps> = ({
   ctaLink = '/academics',
 }) => {
   return (
-    <section className="relative w-full min-h-[92vh] flex flex-col justify-between overflow-hidden">
+    <section
+      id="hero-section"
+      data-hero-section="true"
+      className="relative w-full min-h-[92vh] flex flex-col justify-between overflow-hidden"
+    >
       {/* Background Image & Overlay with smooth scale */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img
@@ -56,21 +60,21 @@ export const HeroSection: FC<HeroSectionProps> = ({
           className="w-full h-full object-cover object-center"
           loading="eager"
         />
-        {/* Dark gradient for high contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/40" />
-        <div className="absolute inset-0 bg-black/15" />
+        {/* Dark balanced gradient for high contrast on centered content */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/75" />
+        <div className="absolute inset-0 bg-black/25" />
       </div>
 
-      {/* Hero Content with masked text lines */}
-      <div className="relative z-10 w-full px-5 sm:px-8 md:px-10 lg:px-14 pt-28 sm:pt-32 md:pt-36 lg:pt-44 pb-14 sm:pb-18 md:pb-20 max-w-6xl">
-        <div className="flex flex-col gap-5 sm:gap-6 md:gap-8">
+      {/* Hero Content - Centered Title and Description */}
+      <div className="relative z-10 w-full px-5 sm:px-8 md:px-10 lg:px-14 pt-28 sm:pt-32 md:pt-36 lg:pt-44 pb-14 sm:pb-18 md:pb-20 max-w-6xl mx-auto flex flex-col items-center text-center">
+        <div className="flex flex-col items-center gap-5 sm:gap-6 md:gap-8 max-w-4xl mx-auto text-center">
           {/* Main Headline with masked slide-up */}
           <div className="overflow-hidden">
             <motion.h1
               initial={{ y: '100%', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[38px] xs:text-[44px] sm:text-[54px] md:text-6xl lg:text-[80px] xl:text-[92px] 2xl:text-[98px] font-heading font-medium leading-[1.08] sm:leading-[1.1] md:leading-[1.12] lg:leading-[1.06] xl:leading-[1.04] text-white tracking-[-0.025em] drop-shadow-md"
+              className="text-[38px] xs:text-[44px] sm:text-[54px] md:text-6xl lg:text-[80px] xl:text-[92px] 2xl:text-[98px] font-heading font-medium leading-[1.08] sm:leading-[1.1] md:leading-[1.12] lg:leading-[1.06] xl:leading-[1.04] text-white tracking-[-0.025em] drop-shadow-md text-center"
             >
               {title}
             </motion.h1>
@@ -81,7 +85,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white/95 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-2xl font-normal drop-shadow-sm"
+            className="text-white/95 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-3xl font-normal drop-shadow-sm text-center mx-auto"
           >
             {description}
           </motion.p>
@@ -103,14 +107,16 @@ export const HeroSection: FC<HeroSectionProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
               whileHover={{ backgroundColor: 'rgba(24, 27, 22, 0.95)' }}
-              className={`bg-[#181b16]/85 backdrop-blur-md px-6 py-6 md:py-8 lg:py-10 flex flex-col justify-center border-r border-white/15 transition-colors ${index === 1 ? 'border-r-0 lg:border-r' : ''
-                } ${index === 2 ? 'border-t lg:border-t-0' : ''} ${index === 3 ? 'border-t lg:border-t-0' : ''
-                }`}
+              className={`bg-[#181b16]/85 backdrop-blur-md px-6 py-6 md:py-8 lg:py-10 flex flex-col justify-center border-r border-white/15 transition-colors ${
+                index === 1 ? 'border-r-0 lg:border-r' : ''
+              } ${index === 2 ? 'border-t lg:border-t-0' : ''} ${
+                index === 3 ? 'border-t lg:border-t-0' : ''
+              }`}
             >
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none">
+              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none text-center sm:text-left">
                 <CountUpNumber target={stat.value} duration={1.5} suffix={stat.suffix} />
               </span>
-              <span className="text-xs sm:text-sm md:text-base font-normal text-white/90 mt-2">
+              <span className="text-xs sm:text-sm md:text-base font-normal text-white/90 mt-2 text-center sm:text-left">
                 {stat.label}
               </span>
             </motion.div>
@@ -130,4 +136,3 @@ export const HeroSection: FC<HeroSectionProps> = ({
     </section>
   )
 }
-
