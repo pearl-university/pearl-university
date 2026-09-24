@@ -99,17 +99,15 @@ const ProgramCard: FC<ProgramCardProps> = ({ program, index, x, cardWidth, gap }
         transformPerspective: 1200,
         transformStyle: 'preserve-3d',
       }}
-      className={`flex-shrink-0 w-[290px] sm:w-[350px] md:w-[400px] min-h-[240px] sm:min-h-[270px] md:min-h-[290px] rounded-2xl p-6 sm:p-7 md:p-8 flex flex-col justify-between transition-colors duration-200 group cursor-pointer will-change-transform ${
-        isDark
-          ? 'bg-[#141416] text-white shadow-xl shadow-black/10'
-          : 'bg-transparent border border-black/30 text-black hover:border-black/60 hover:bg-black/[0.02]'
-      }`}
+      className={`flex-shrink-0 w-[290px] sm:w-[350px] md:w-[400px] min-h-[240px] sm:min-h-[270px] md:min-h-[290px] rounded-2xl p-6 sm:p-7 md:p-8 flex flex-col justify-between transition-colors duration-200 group cursor-pointer will-change-transform ${isDark
+        ? 'bg-[#141416] text-white shadow-xl shadow-black/10'
+        : 'bg-transparent border border-black/30 text-black hover:border-black/60 hover:bg-black/[0.02]'
+        }`}
     >
       {/* Program Title */}
       <h4
-        className={`text-lg sm:text-xl md:text-[23px] font-normal leading-snug tracking-tight ${
-          isDark ? 'text-white' : 'text-black'
-        }`}
+        className={`text-lg sm:text-xl md:text-[23px] font-normal leading-snug tracking-tight ${isDark ? 'text-white' : 'text-black'
+          }`}
       >
         {program.title}
       </h4>
@@ -117,21 +115,19 @@ const ProgramCard: FC<ProgramCardProps> = ({ program, index, x, cardWidth, gap }
       {/* Bottom Faculty Tag & Arrow */}
       <div className="flex items-center justify-between gap-3 mt-8 sm:mt-10">
         <span
-          className={`inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-normal border transition-colors ${
-            isDark
-              ? 'border-white/30 text-white/90 group-hover:border-white/60'
-              : 'border-black/40 text-black/90 group-hover:border-black/70'
-          }`}
+          className={`inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-normal border transition-colors ${isDark
+            ? 'border-white/30 text-white/90 group-hover:border-white/60'
+            : 'border-black/40 text-black/90 group-hover:border-black/70'
+            }`}
         >
           {program.faculty}
         </span>
 
         <div
-          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-200 shrink-0 ${
-            isDark
-              ? 'border-white/30 text-white group-hover:bg-white group-hover:text-black'
-              : 'border-black/40 text-black group-hover:bg-black group-hover:text-white'
-          }`}
+          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-200 shrink-0 ${isDark
+            ? 'border-white/30 text-white group-hover:bg-white group-hover:text-black'
+            : 'border-black/40 text-black group-hover:bg-black group-hover:text-white'
+            }`}
         >
           <FiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
         </div>
@@ -280,10 +276,10 @@ export const AcademicProgramsSection: FC = () => {
       ref={sectionRef}
       id="academic-programs-section"
       data-hide-nav="true"
-      className="relative w-full h-[260vh] bg-[#FDE88C]"
+      className="relative w-full h-[260vh] bg-[#FFF]"
     >
       {/* Pinned Sticky Viewport Container */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 overflow-hidden bg-[#FDE88C]">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 overflow-hidden bg-[#FFF]">
         <div className="w-full max-w-7xl mx-auto flex flex-col justify-center h-full max-h-[860px]">
           {/* Top Header */}
           <motion.div

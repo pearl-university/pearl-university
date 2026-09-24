@@ -23,6 +23,7 @@ export interface HeroSectionProps {
   title?: ReactNode
   description?: string
   stats?: StatItem[]
+  showStats?: boolean
   ctaText?: string
   ctaLink?: string
 }
@@ -39,6 +40,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
   ),
   description = 'Welcome to Pearl University, an academic community dedicated to building value through rigorous learning, purposeful innovation, and a commitment to developing graduates equipped to contribute meaningfully to society, industry, and the future.',
   stats = DEFAULT_STATS,
+  showStats = false,
   ctaText = 'Explore →',
   ctaLink = '/academics',
 }) => {
@@ -46,13 +48,17 @@ export const HeroSection: FC<HeroSectionProps> = ({
     <section
       id="hero-section"
       data-hero-section="true"
-      className="relative w-full min-h-[92vh] flex flex-col justify-between overflow-hidden"
+      className={`relative w-full overflow-hidden flex flex-col ${
+        showStats
+          ? 'min-h-screen sm:min-h-[100dvh] justify-between'
+          : 'min-h-screen sm:min-h-[100dvh] h-screen justify-center'
+      }`}
     >
       {/* Background Image & Overlay with smooth scale */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img
           key={backgroundImage}
-          initial={{ scale: 1.12, opacity: 0.8 }}
+          initial={{ scale: 1.12, opacity: 0.85 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
           src={backgroundImage}
@@ -60,13 +66,19 @@ export const HeroSection: FC<HeroSectionProps> = ({
           className="w-full h-full object-cover object-center"
           loading="eager"
         />
-        {/* Dark balanced gradient for high contrast on centered content */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/75" />
-        <div className="absolute inset-0 bg-black/25" />
+        {/* Softened dark gradient overlay to allow photos to shine through while keeping text readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
       {/* Hero Content - Centered Title and Description */}
-      <div className="relative z-10 w-full px-5 sm:px-8 md:px-10 lg:px-14 pt-28 sm:pt-32 md:pt-36 lg:pt-44 pb-14 sm:pb-18 md:pb-20 max-w-6xl mx-auto flex flex-col items-center text-center">
+      <div
+        className={`relative z-10 w-full px-5 sm:px-8 md:px-10 lg:px-14 max-w-6xl mx-auto flex flex-col items-center text-center ${
+          showStats
+            ? 'pt-28 sm:pt-32 md:pt-36 lg:pt-44 pb-14 sm:pb-18 md:pb-20'
+            : 'pt-28 sm:pt-32 md:pt-36 pb-20 sm:pb-24'
+        }`}
+      >
         <div className="flex flex-col items-center gap-5 sm:gap-6 md:gap-8 max-w-4xl mx-auto text-center">
           {/* Main Headline with masked slide-up */}
           <div className="overflow-hidden">
@@ -92,47 +104,49 @@ export const HeroSection: FC<HeroSectionProps> = ({
         </div>
       </div>
 
-      {/* Bottom Stats & Explore Bar */}
-      <div className="relative z-10 w-full mt-auto">
-        <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 w-full border-t border-white/10"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-              whileHover={{ backgroundColor: 'rgba(24, 27, 22, 0.95)' }}
-              className={`bg-[#181b16]/85 backdrop-blur-md px-6 py-6 md:py-8 lg:py-10 flex flex-col justify-center border-r border-white/15 transition-colors ${
-                index === 1 ? 'border-r-0 lg:border-r' : ''
-              } ${index === 2 ? 'border-t lg:border-t-0' : ''} ${
-                index === 3 ? 'border-t lg:border-t-0' : ''
-              }`}
-            >
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none text-center sm:text-left">
-                <CountUpNumber target={stat.value} duration={1.5} suffix={stat.suffix} />
-              </span>
-              <span className="text-xs sm:text-sm md:text-base font-normal text-white/90 mt-2 text-center sm:text-left">
-                {stat.label}
-              </span>
-            </motion.div>
-          ))}
-
-          {/* Explore CTA Box */}
-          <Link
-            to={ctaLink}
-            className="col-span-2 sm:col-span-2 lg:col-span-1 bg-white text-black hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 px-8 py-6 md:py-8 lg:py-10 flex items-center justify-center group focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-900 cursor-pointer"
+      {/* Bottom Stats & Explore Bar - Only visible on Home Screen */}
+      {showStats && (
+        <div className="relative z-10 w-full mt-auto">
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 w-full border-t border-white/10"
           >
-            <span className="font-[500] text-xl sm:text-2xl md:text-[26px] tracking-tight group-hover:translate-x-1.5 transition-transform duration-200">
-              {ctaText}
-            </span>
-          </Link>
-        </motion.div>
-      </div>
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                whileHover={{ backgroundColor: 'rgba(24, 27, 22, 0.8)' }}
+                className={`bg-[#181b16]/60 backdrop-blur-md px-6 py-6 md:py-8 lg:py-10 flex flex-col justify-center border-r border-white/15 transition-colors ${
+                  index === 1 ? 'border-r-0 lg:border-r' : ''
+                } ${index === 2 ? 'border-t lg:border-t-0' : ''} ${
+                  index === 3 ? 'border-t lg:border-t-0' : ''
+                }`}
+              >
+                <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none text-center sm:text-left">
+                  <CountUpNumber target={stat.value} duration={1.5} suffix={stat.suffix} />
+                </span>
+                <span className="text-xs sm:text-sm md:text-base font-normal text-white/90 mt-2 text-center sm:text-left">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+
+            {/* Explore CTA Box */}
+            <Link
+              to={ctaLink}
+              className="col-span-2 sm:col-span-2 lg:col-span-1 bg-white text-black hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 px-8 py-6 md:py-8 lg:py-10 flex items-center justify-center group focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-900 cursor-pointer"
+            >
+              <span className="font-[500] text-xl sm:text-2xl md:text-[26px] tracking-tight group-hover:translate-x-1.5 transition-transform duration-200">
+                {ctaText}
+              </span>
+            </Link>
+          </motion.div>
+        </div>
+      )}
     </section>
   )
 }

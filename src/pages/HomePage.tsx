@@ -12,7 +12,7 @@ export const HomePage: FC = () => {
   return (
     <div className="w-full flex flex-col">
       <SEO />
-      <HeroSection />
+      <HeroSection showStats={true} />
       <div className='my-12' />
       {/* <MarqueeTicker /> */}
       <FacultiesSection />
