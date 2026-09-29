@@ -3,18 +3,16 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   FiX,
-  FiHome,
   FiBook,
-  FiClock,
+  FiLayers,
+  FiUsers,
+  FiCompass,
   FiBookmark,
   FiSettings,
-  FiLogOut,
-  FiUser,
-  FiLayers,
 } from 'react-icons/fi'
+import { HiSparkles, HiAcademicCap } from 'react-icons/hi2'
 import logoSvg from '../../../assets/logo.svg'
-import { useAuth } from '../../../context/AuthContext'
-import { DEMO_CREDENTIALS } from '../../../utils/auth'
+import { useLibraryContext } from '../../../context/LibraryContext'
 
 interface LibraryMobileOffCanvasProps {
   isOpen: boolean
@@ -22,10 +20,11 @@ interface LibraryMobileOffCanvasProps {
 }
 
 const PRIMARY_NAV = [
-  { name: 'Home', href: '/library/dashboard', icon: FiHome },
-  { name: 'Library', href: '/library/dashboard/catalogue', icon: FiBook },
-  { name: 'Reads', href: '/library/dashboard/reads', icon: FiClock },
-  { name: 'Saved', href: '/library/dashboard/saved', icon: FiBookmark },
+  { name: 'Catalogue', href: '/library/dashboard', icon: FiBook },
+  { name: 'Faculties & Depts', href: '/library/dashboard/faculties', icon: FiLayers },
+  { name: 'Authors Directory', href: '/library/dashboard/authors', icon: FiUsers },
+  { name: 'Curricula Spotlight', href: '/library/dashboard/spotlight', icon: FiCompass },
+  { name: 'My Bookshelf', href: '/library/dashboard/saved', icon: FiBookmark },
 ]
 
 export const LibraryMobileOffCanvas: FC<LibraryMobileOffCanvasProps> = ({
@@ -33,13 +32,8 @@ export const LibraryMobileOffCanvas: FC<LibraryMobileOffCanvasProps> = ({
   onClose,
 }) => {
   const location = useLocation()
-  const { user: authUser, logout } = useAuth()
-  const user = authUser || DEMO_CREDENTIALS.user
+  const { savedCount } = useLibraryContext()
 
-  const handleLogout = async () => {
-    onClose()
-    await logout()
-  }
 
   return (
     <AnimatePresence>
@@ -100,43 +94,23 @@ export const LibraryMobileOffCanvas: FC<LibraryMobileOffCanvasProps> = ({
                 </button>
               </div>
 
-              {/* Student Profile Capsule (Items not fitted on top-bar on mobile) */}
+              {/* Public Repository Access Capsule */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-emerald-500/80 shrink-0 bg-[#200441]">
-                  {user.avatarUrl ? (
-                    <img
-                      src={user.avatarUrl}
-                      alt={user.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-white">
-                      <FiUser className="w-5 h-5" />
-                    </div>
-                  )}
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#FDE88C]/80 shrink-0 bg-[#200441] flex items-center justify-center text-[#FDE88C]">
+                  <HiAcademicCap className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="text-xs font-medium text-white truncate">
-                    {user.name}
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-white">
+                    <span>Open Access</span>
+                    <HiSparkles className="w-3.5 h-3.5 text-[#FDE88C]" />
+                  </div>
+                  <span className="text-[10px] text-[#FDE88C] font-mono truncate mt-0.5">
+                    Academic Repository
                   </span>
-                  <span className="text-[11px] text-[#FDE88C] font-mono truncate">
-                    {user.studentId}
-                  </span>
-                  <span className="text-[10px] text-white/60 truncate mt-0.5">
-                    {user.faculty}
+                  <span className="text-[10px] text-white/60 truncate">
+                    611 Textbooks Available
                   </span>
                 </div>
-              </div>
-
-              {/* Mobile Program Tag */}
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] uppercase tracking-wider text-white/40 font-mono">
-                  Level:
-                </span>
-                <span className="px-3 py-1 rounded-full bg-[#200441] text-[#FDE88C] border border-[#FDE88C]/30 text-xs font-medium inline-flex items-center gap-1.5">
-                  <FiLayers className="w-3 h-3" />
-                  {user.program}
-                </span>
               </div>
 
               {/* Navigation Links */}
@@ -169,31 +143,28 @@ export const LibraryMobileOffCanvas: FC<LibraryMobileOffCanvasProps> = ({
                       )}
                       <Icon className="w-5 h-5 shrink-0" />
                       <span>{item.name}</span>
+
+                      {item.name === 'My Bookshelf' && savedCount > 0 && (
+                        <span className="ml-auto text-[10px] bg-[#FDE88C] text-[#200441] font-bold px-2 py-0.5 rounded-full font-mono shadow-xs">
+                          {savedCount}
+                        </span>
+                      )}
                     </Link>
                   )
                 })}
               </nav>
             </div>
 
-            {/* Bottom Section: Settings & Logout */}
+            {/* Bottom Section: Settings */}
             <div className="p-6 border-t border-white/10 flex flex-col gap-2">
               <Link
-                to="/library/dashboard/settings"
+                to="/library/dashboard/saved"
                 onClick={onClose}
                 className="flex items-center gap-4 px-4 py-3 rounded-xl font-medium text-sm text-white/60 hover:text-white hover:bg-white/5 transition"
               >
                 <FiSettings className="w-5 h-5 shrink-0" />
                 <span>Settings</span>
               </Link>
-
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium text-sm text-[#F87171] hover:text-[#EF4444] hover:bg-red-500/10 transition text-left cursor-pointer"
-              >
-                <FiLogOut className="w-5 h-5 shrink-0" />
-                <span>Logout</span>
-              </button>
             </div>
           </motion.div>
         </div>
@@ -201,3 +172,4 @@ export const LibraryMobileOffCanvas: FC<LibraryMobileOffCanvasProps> = ({
     </AnimatePresence>
   )
 }
+

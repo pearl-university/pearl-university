@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { UIProvider } from './context/UIContext'
 import { AuthProvider } from './context/AuthContext'
+import { LibraryProvider } from './context/LibraryContext'
 import { LibraryFilterProvider } from './context/LibraryFilterContext'
 import { RootLayout } from './components/layout/RootLayout'
 import { HomePage } from './pages/HomePage'
@@ -12,6 +13,11 @@ import { PortalsPage } from './pages/PortalsPage'
 import { LibraryLoginPage } from './pages/LibraryLoginPage'
 import { StudentLoginPage } from './pages/StudentLoginPage'
 import { LibraryDashboardPage } from './pages/LibraryDashboardPage'
+import { LibraryBookDetailsPage } from './pages/LibraryBookDetailsPage'
+import { LibraryFacultiesPage } from './pages/LibraryFacultiesPage'
+import { LibraryAuthorsPage } from './pages/LibraryAuthorsPage'
+import { LibrarySpotlightPage } from './pages/LibrarySpotlightPage'
+import { LibrarySavedPage } from './pages/LibrarySavedPage'
 import { StudentDashboardPage } from './pages/StudentDashboardPage'
 import { AcceptanceFeePaymentPage } from './pages/AcceptanceFeePaymentPage'
 import { OnlineScreeningPage } from './pages/OnlineScreeningPage'
@@ -24,8 +30,9 @@ function App() {
         <UIProvider>
           <BrowserRouter>
             <AuthProvider>
-              <LibraryFilterProvider>
-                <Routes>
+              <LibraryProvider>
+                <LibraryFilterProvider>
+                  <Routes>
                   {/* Standalone Student Dashboard Routes (No public Navbar / Footer) */}
                   <Route path="/student/dashboard" element={<StudentDashboardPage />} />
                   <Route path="/student/dashboard/acceptance-fee" element={<AcceptanceFeePaymentPage />} />
@@ -37,10 +44,20 @@ function App() {
                   <Route path="/student/dashboard/*" element={<StudentDashboardPage />} />
                   <Route path="/student-dashboard" element={<StudentDashboardPage />} />
 
-                  {/* Standalone Library Dashboard Routes (No public Navbar / Footer) */}
+                  {/* Standalone e-Library Functional Screens (No public Navbar / Footer) */}
                   <Route path="/library/dashboard" element={<LibraryDashboardPage />} />
-                  <Route path="/library/dashboard/*" element={<LibraryDashboardPage />} />
+                  <Route path="/library/dashboard/book/:bookId" element={<LibraryBookDetailsPage />} />
+                  <Route path="/library/dashboard/catalogue" element={<LibraryDashboardPage />} />
+                  <Route path="/library/dashboard/faculties" element={<LibraryFacultiesPage />} />
+                  <Route path="/library/dashboard/sections" element={<LibraryFacultiesPage />} />
+                  <Route path="/library/dashboard/authors" element={<LibraryAuthorsPage />} />
+                  <Route path="/library/dashboard/spotlight" element={<LibrarySpotlightPage />} />
+                  <Route path="/library/dashboard/departments" element={<LibrarySpotlightPage />} />
+                  <Route path="/library/dashboard/saved" element={<LibrarySavedPage />} />
+                  <Route path="/library/dashboard/reads" element={<LibrarySavedPage />} />
+                  <Route path="/library/dashboard/settings" element={<LibrarySavedPage />} />
                   <Route path="/library-dashboard" element={<LibraryDashboardPage />} />
+                  <Route path="/library/dashboard/*" element={<LibraryDashboardPage />} />
 
                   {/* Public Website Routes with Standard RootLayout */}
                   <Route path="/" element={<RootLayout />}>
@@ -61,8 +78,9 @@ function App() {
                   </Route>
                 </Routes>
               </LibraryFilterProvider>
-            </AuthProvider>
-          </BrowserRouter>
+            </LibraryProvider>
+          </AuthProvider>
+        </BrowserRouter>
         </UIProvider>
       </Provider>
     </HelmetProvider>

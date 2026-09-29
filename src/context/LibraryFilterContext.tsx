@@ -10,6 +10,8 @@ import {
   type BookMetadata,
 } from '../utils/bookScanner'
 
+export type BookSortOption = 'default' | 'title-asc' | 'title-desc' | 'year-desc' | 'year-asc'
+
 export interface LibraryFilterContextType {
   searchQuery: string
   setSearchQuery: (query: string) => void
@@ -19,8 +21,9 @@ export interface LibraryFilterContextType {
   setSelectedDept: (dept: string) => void
   selectedCoreArea: string
   setSelectedCoreArea: (area: string) => void
-  selectedProgram: string
-  setSelectedProgram: (prog: string) => void
+  sortBy: BookSortOption
+  setSortBy: (sort: BookSortOption) => void
+  resetFilters: () => void
 
   availableFaculties: string[]
   availableDepartments: string[]
@@ -38,7 +41,7 @@ export const LibraryFilterProvider: FC<{ children: ReactNode }> = ({ children })
   const [selectedFaculty, setSelectedFaculty] = useState('All Faculties')
   const [selectedDept, setSelectedDept] = useState('All Departments')
   const [selectedCoreArea, setSelectedCoreArea] = useState('All Areas')
-  const [selectedProgram, setSelectedProgram] = useState('Undergraduate')
+  const [sortBy, setSortBy] = useState<BookSortOption>('default')
 
   const availableFaculties = useMemo(() => {
     return ['All Faculties', ...getUniqueFaculties()]
@@ -63,14 +66,23 @@ export const LibraryFilterProvider: FC<{ children: ReactNode }> = ({ children })
     setSelectedCoreArea('All Areas')
   }
 
+  const resetFilters = () => {
+    setSearchQuery('')
+    setSelectedFaculty('All Faculties')
+    setSelectedDept('All Departments')
+    setSelectedCoreArea('All Areas')
+    setSortBy('default')
+  }
+
   const filteredBooks = useMemo(() => {
     return filterBooks({
       faculty: selectedFaculty,
       department: selectedDept,
       coreArea: selectedCoreArea,
       searchQuery,
+      sortBy,
     })
-  }, [selectedFaculty, selectedDept, selectedCoreArea, searchQuery])
+  }, [selectedFaculty, selectedDept, selectedCoreArea, searchQuery, sortBy])
 
   return (
     <LibraryFilterContext.Provider
@@ -83,8 +95,9 @@ export const LibraryFilterProvider: FC<{ children: ReactNode }> = ({ children })
         setSelectedDept: handleDeptChange,
         selectedCoreArea,
         setSelectedCoreArea,
-        selectedProgram,
-        setSelectedProgram,
+        sortBy,
+        setSortBy,
+        resetFilters,
         availableFaculties,
         availableDepartments,
         availableCoreAreas,
@@ -105,3 +118,4 @@ export const useLibraryFilter = (): LibraryFilterContextType => {
   }
   return context
 }
+

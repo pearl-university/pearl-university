@@ -1,8 +1,11 @@
 import type { FC, ReactNode } from 'react'
 import { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import { LibrarySidebar } from './LibrarySidebar'
 import { LibraryTopBar } from './LibraryTopBar'
 import { LibraryMobileOffCanvas } from './LibraryMobileOffCanvas'
+import { LibraryPdfReader } from '../reader/LibraryPdfReader'
+import { useLibraryContext } from '../../../context/LibraryContext'
 import { BottomPillLoader } from '../../ui/BottomPillLoader'
 import { AlertToastsContainer } from '../../ui/AlertToasts'
 import { ConfirmModal } from '../../ui/ConfirmModal'
@@ -10,6 +13,7 @@ import { ConfirmModal } from '../../ui/ConfirmModal'
 const SIDEBAR_COLLAPSED_STORAGE_KEY = 'pearl_sidebar_collapsed'
 
 export const LibraryDashboardLayout: FC<{ children: ReactNode }> = ({ children }) => {
+  const { activeReadingBook, closeReader } = useLibraryContext()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(() => {
     try {
@@ -69,6 +73,16 @@ export const LibraryDashboardLayout: FC<{ children: ReactNode }> = ({ children }
           {children}
         </main>
       </div>
+
+      {/* Centralized Global In-App PDF Reader Modal */}
+      <AnimatePresence>
+        {activeReadingBook && (
+          <LibraryPdfReader
+            book={activeReadingBook}
+            onClose={closeReader}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Global UI Elements for Dashboard */}
       <BottomPillLoader />

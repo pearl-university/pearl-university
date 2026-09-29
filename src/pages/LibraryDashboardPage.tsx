@@ -1,199 +1,64 @@
 import { type FC, useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
 import {
-  FiArrowUpRight,
   FiBookOpen,
-  FiBookmark,
-  FiDownload,
   FiEye,
-  FiClock,
+  FiSearch,
+  FiSliders,
+  FiX,
+  FiChevronDown,
+  FiRotateCcw,
 } from 'react-icons/fi'
 import { HiSparkles } from 'react-icons/hi2'
 import { LibraryDashboardLayout } from '../components/library/dashboard/LibraryDashboardLayout'
-import { useUI } from '../context/UIContext'
-import { useLibraryFilter } from '../context/LibraryFilterContext'
+import { useLibraryFilter, type BookSortOption } from '../context/LibraryFilterContext'
+import { useLibraryContext } from '../context/LibraryContext'
+import { BookCard } from '../components/library/BookCard'
 import { BookCover } from '../components/library/BookCover'
-import { LibraryPdfReader } from '../components/library/reader/LibraryPdfReader'
-import { getReadingProgress } from '../utils/readingProgress'
-import type { BookMetadata } from '../utils/bookScanner'
-
-const DynamicBookCard: FC<{
-  book: BookMetadata
-  index: number
-  onReadBook: (book: BookMetadata) => void
-}> = ({ book, index, onReadBook }) => {
-  const { alert } = useUI()
-  const progress = useMemo(() => getReadingProgress(book.id), [book.id])
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.04 }}
-      className="bg-white rounded-2xl p-4 sm:p-5 flex gap-4 sm:gap-5 items-stretch shadow-xs hover:shadow-xl transition-all duration-300 border border-black/5 group cursor-pointer"
-      onClick={() => onReadBook(book)}
-    >
-      {/* Book Cover with Dynamic First-Page Extraction */}
-      <div className="w-24 sm:w-28 md:w-32 shrink-0">
-        <BookCover
-          pdfUrl={book.fileUrl}
-          title={book.title}
-          author={book.author}
-          faculty={book.faculty}
-          department={book.department}
-          aspectRatio="aspect-[3/4.2]"
-        />
-      </div>
-
-      {/* Book Meta Details */}
-      <div className="flex-1 flex flex-col justify-between min-w-0 py-0.5">
-        <div>
-          <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-[#200441] bg-[#ECE0EF] px-2 py-0.5 rounded-md font-semibold truncate max-w-[170px]">
-              {book.coreArea}
-            </span>
-            {book.publishedYear && (
-              <span className="text-[10px] text-gray-400 font-mono">
-                {book.publishedYear}
-              </span>
-            )}
-            {progress && (
-              <span className="text-[10px] text-purple-700 bg-purple-50 font-mono px-2 py-0.5 rounded-md flex items-center gap-1">
-                <FiClock className="w-2.5 h-2.5" /> p.{progress.page}/{progress.totalPages}
-              </span>
-            )}
-          </div>
-
-          <h3 className="font-heading font-medium text-sm sm:text-[15px] md:text-base text-gray-900 group-hover:text-[#200441] transition-colors leading-snug line-clamp-2">
-            {book.title}
-          </h3>
-
-          {/* Single Author Field */}
-          <p className="text-xs text-gray-600 font-normal mt-1 line-clamp-1">
-            {book.author}
-          </p>
-
-          {/* Combined Extra Meta (volume, edition, publication) */}
-          <p className="text-[11px] text-gray-400 font-light mt-0.5 line-clamp-1">
-            {book.extraMeta}
-          </p>
-        </div>
-
-        {/* Action Bar */}
-        <div className="mt-3 flex items-center justify-between gap-2 border-t border-gray-100 pt-2.5">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation()
-              onReadBook(book)
-            }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#200441] hover:bg-[#35145D] text-white text-xs font-medium transition-all shadow-xs cursor-pointer"
-          >
-            <FiEye className="w-3.5 h-3.5" />
-            <span>{progress ? 'Resume' : 'Read'}</span>
-          </button>
-
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation()
-                alert.success('Saved to Bookshelf', `"${book.title}" has been saved.`)
-              }}
-              className="p-1.5 rounded-full text-gray-400 hover:text-[#200441] hover:bg-[#ECE0EF] transition cursor-pointer"
-              title="Bookmark this book"
-            >
-              <FiBookmark className="w-3.5 h-3.5" />
-            </button>
-            <a
-              href={book.fileUrl}
-              download={book.fileName}
-              onClick={(e) => e.stopPropagation()}
-              className="p-1.5 rounded-full text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 transition cursor-pointer inline-flex"
-              title="Download PDF for offline study"
-            >
-              <FiDownload className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-const RecentlyAddedItem: FC<{
-  book: BookMetadata
-  index: number
-  onReadBook: (book: BookMetadata) => void
-}> = ({ book, index, onReadBook }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 10 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.03 }}
-      className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 transition cursor-pointer group"
-      onClick={() => onReadBook(book)}
-      title="Open in In-App Reader"
-    >
-      {/* Dynamic Miniature Cover */}
-      <div className="w-12 sm:w-14 shrink-0">
-        <BookCover
-          pdfUrl={book.fileUrl}
-          title={book.title}
-          author={book.author}
-          faculty={book.faculty}
-          department={book.department}
-          aspectRatio="aspect-[3/4]"
-        />
-      </div>
-
-      {/* Meta */}
-      <div className="flex-1 min-w-0">
-        <h4 className="font-heading font-medium text-xs sm:text-[13px] text-gray-900 group-hover:text-[#200441] transition-colors leading-snug line-clamp-2">
-          {book.title}
-        </h4>
-        <p className="text-[11px] text-gray-600 mt-0.5 truncate">{book.author}</p>
-        <div className="flex items-center gap-1.5 mt-1">
-          <span className="inline-block text-[10px] text-gray-400 font-mono truncate">
-            {book.coreArea}
-          </span>
-          <span className="text-[9px] text-purple-600 font-mono font-semibold uppercase">
-            {book.fileExtension}
-          </span>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
 
 export const LibraryDashboardPage: FC = () => {
+  const navigate = useNavigate()
   const {
     filteredBooks,
     allBooks,
     selectedFaculty,
+    setSelectedFaculty,
+    availableFaculties,
     selectedDept,
+    setSelectedDept,
+    availableDepartments,
     selectedCoreArea,
     setSelectedCoreArea,
     availableCoreAreas,
     searchQuery,
+    setSearchQuery,
+    sortBy,
+    setSortBy,
+    resetFilters,
   } = useLibraryFilter()
 
-  const [activeReadingBook, setActiveReadingBook] = useState<BookMetadata | null>(null)
+  const { openReader, readingHistory } = useLibraryContext()
+  const [displayLimit, setDisplayLimit] = useState(24)
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
-  // Memoize continue reading shelf items
-  const continueReadingBooks = useMemo(() => {
-    return allBooks
-      .map((b) => ({ book: b, progress: getReadingProgress(b.id) }))
-      .filter((item): item is { book: BookMetadata; progress: NonNullable<ReturnType<typeof getReadingProgress>> } => 
-        Boolean(item.progress && item.progress.page > 0)
-      )
-      .sort((a, b) => b.progress.lastReadAt - a.progress.lastReadAt)
-  }, [allBooks])
+  // Reset display limit when filter or search query changes
+  const activeFilterKey = `${selectedFaculty}-${selectedDept}-${selectedCoreArea}-${searchQuery}-${sortBy}`
+  const visibleBooks = useMemo(() => {
+    return filteredBooks.slice(0, displayLimit)
+  }, [filteredBooks, displayLimit])
 
-  const suggestedReads = filteredBooks.slice(0, 4)
-  const topReads = filteredBooks.length > 4 ? filteredBooks.slice(4) : filteredBooks
+  // Count active non-default filters
+  const activeFiltersCount = useMemo(() => {
+    let count = 0
+    if (searchQuery.trim()) count++
+    if (selectedFaculty !== 'All Faculties') count++
+    if (selectedDept !== 'All Departments') count++
+    if (selectedCoreArea !== 'All Areas') count++
+    if (sortBy !== 'default') count++
+    return count
+  }, [searchQuery, selectedFaculty, selectedDept, selectedCoreArea, sortBy])
 
   return (
     <LibraryDashboardLayout>
@@ -201,193 +66,408 @@ export const LibraryDashboardPage: FC = () => {
         <title>e-Library Catalogue | Pearl University</title>
         <meta
           name="description"
-          content="Access university textbooks, suggested reads, and digital archives with in-app reader at Pearl University."
+          content="Access 611 university textbooks across all faculties and academic departments at Pearl University."
         />
       </Helmet>
 
-      {/* ── IN-APP PDF READER MODAL OVERLAY ─────────────────── */}
-      <AnimatePresence>
-        {activeReadingBook && (
-          <LibraryPdfReader
-            book={activeReadingBook}
-            onClose={() => setActiveReadingBook(null)}
-          />
-        )}
-      </AnimatePresence>
+      <div className="max-w-[1600px] mx-auto flex flex-col gap-6 pb-16" key={activeFilterKey}>
+        {/* ── CATALOGUE HERO BANNER ───────────────────────────── */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1B0A37] via-[#200441] to-[#3B1566] text-white p-6 sm:p-8 md:p-10 shadow-xl border border-white/10">
+          <div className="relative z-10 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#FDE88C] text-xs font-semibold mb-3 border border-white/10">
+              <HiSparkles className="w-3.5 h-3.5" />
+              <span>OFFICIAL ACADEMIC REPOSITORY • 611 TEXTBOOKS</span>
+            </div>
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-white leading-tight">
+              Academic Textbook Catalogue
+            </h1>
+            <p className="text-white/70 text-xs sm:text-sm mt-2 leading-relaxed">
+              Explore university textbooks prescribed for coursework, examination preparation, and academic research across all faculties and departments.
+            </p>
+          </div>
+        </div>
 
-      <div className="max-w-[1600px] mx-auto flex flex-col gap-6 pb-10">
-        {/* Continue Reading Shelf (If student has reading history) */}
-        {continueReadingBooks.length > 0 && !searchQuery && (
-          <div className="bg-gradient-to-r from-[#1B0A37] to-[#2E0B59] rounded-2xl p-4 sm:p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4 border border-white/10">
+        {/* ── CONTINUE READING SHELF (IF ACTIVE) ──────────────── */}
+        {readingHistory.length > 0 && !searchQuery && (
+          <div className="bg-gradient-to-r from-[#1B0A37] to-[#2E0B59] rounded-2xl p-4 sm:p-5 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4 border border-white/10">
             <div className="flex items-center gap-4 min-w-0">
-              <div className="w-12 h-16 shrink-0 hidden sm:block">
+              <button
+                type="button"
+                onClick={() => navigate(`/library/dashboard/book/${readingHistory[0].book.id}`)}
+                className="w-12 h-16 shrink-0 hidden sm:block rounded-lg overflow-hidden border border-white/20 hover:scale-105 transition-transform cursor-pointer shadow-xs"
+                title={`View details for "${readingHistory[0].book.title}"`}
+              >
                 <BookCover
-                  pdfUrl={continueReadingBooks[0].book.fileUrl}
-                  title={continueReadingBooks[0].book.title}
-                  author={continueReadingBooks[0].book.author}
+                  pdfUrl={readingHistory[0].book.fileUrl}
+                  title={readingHistory[0].book.title}
+                  author={readingHistory[0].book.author}
                   aspectRatio="aspect-[3/4]"
                 />
-              </div>
-              <div className="min-w-0">
+              </button>
+              <div
+                className="min-w-0 cursor-pointer group"
+                onClick={() => navigate(`/library/dashboard/book/${readingHistory[0].book.id}`)}
+              >
                 <div className="flex items-center gap-2 text-xs text-[#FDE88C] font-semibold mb-1">
                   <HiSparkles className="w-3.5 h-3.5" />
                   <span>CONTINUE READING</span>
                 </div>
-                <h3 className="font-heading font-medium text-base sm:text-lg text-white truncate">
-                  {continueReadingBooks[0].book.title}
+                <h3 className="font-heading font-medium text-base sm:text-lg text-white group-hover:text-[#FDE88C] transition-colors truncate">
+                  {readingHistory[0].book.title}
                 </h3>
                 <p className="text-xs text-white/70 truncate">
-                  {continueReadingBooks[0].book.author} • Page {continueReadingBooks[0].progress.page} of {continueReadingBooks[0].progress.totalPages}
+                  {readingHistory[0].book.author} • Page {readingHistory[0].progress.page} of {readingHistory[0].progress.totalPages}
                 </p>
               </div>
             </div>
 
             <button
-              onClick={() => setActiveReadingBook(continueReadingBooks[0].book)}
+              type="button"
+              onClick={() => openReader(readingHistory[0].book)}
               className="px-5 py-2.5 rounded-xl bg-[#FDE88C] hover:bg-[#fde16e] text-[#1B0A37] font-semibold text-xs sm:text-sm transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer"
             >
               <FiEye className="w-4 h-4" />
-              <span>Resume Page {continueReadingBooks[0].progress.page}</span>
+              <span>Resume Page {readingHistory[0].progress.page}</span>
             </button>
           </div>
         )}
 
-        {/* Dynamic Core Academic Area Filter Pills */}
-        {availableCoreAreas.length > 2 && (
-          <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1">
-            <span className="text-xs font-mono uppercase text-gray-500 font-medium shrink-0 mr-1">
-              Core Areas:
-            </span>
-            {availableCoreAreas.map((area) => (
+        {/* ── DEDICATED CATALOGUE SEARCH & FILTER CONTROLS ─────── */}
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-black/5 shadow-xs flex flex-col gap-4">
+          {/* Main Control Bar */}
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+            {/* Search Input Bar */}
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by title, author, discipline, department, or year..."
+                className="w-full pl-10 pr-10 py-2.5 bg-gray-50 hover:bg-white focus:bg-white rounded-xl border border-black/10 focus:border-[#200441] focus:ring-2 focus:ring-[#200441]/15 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 transition-all outline-none"
+              />
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                <FiSearch className="w-4 h-4" />
+              </div>
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition cursor-pointer"
+                  title="Clear search"
+                >
+                  <FiX className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+
+            {/* Desktop Filters: Faculty, Department & Sort */}
+            <div className="hidden md:flex items-center gap-2.5 shrink-0">
+              {/* Faculty Select */}
+              <div className="relative">
+                <select
+                  value={selectedFaculty}
+                  onChange={(e) => setSelectedFaculty(e.target.value)}
+                  className="appearance-none bg-gray-50 hover:bg-white border border-black/10 text-gray-800 text-xs rounded-xl px-3.5 py-2.5 pr-8 focus:outline-none focus:border-[#200441] focus:ring-2 focus:ring-[#200441]/15 transition font-medium cursor-pointer max-w-[210px] truncate"
+                >
+                  {availableFaculties.map((fac) => (
+                    <option key={fac} value={fac}>
+                      {fac === 'All Faculties' ? 'All Faculties' : fac}
+                    </option>
+                  ))}
+                </select>
+                <FiChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {/* Department Select (Cascades with faculty) */}
+              <div className="relative">
+                <select
+                  value={selectedDept}
+                  onChange={(e) => setSelectedDept(e.target.value)}
+                  className="appearance-none bg-gray-50 hover:bg-white border border-black/10 text-gray-800 text-xs rounded-xl px-3.5 py-2.5 pr-8 focus:outline-none focus:border-[#200441] focus:ring-2 focus:ring-[#200441]/15 transition font-medium cursor-pointer max-w-[220px] truncate"
+                >
+                  {availableDepartments.map((dept) => (
+                    <option key={dept} value={dept}>
+                      {dept === 'All Departments' ? 'All Departments' : dept}
+                    </option>
+                  ))}
+                </select>
+                <FiChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {/* Sort Select */}
+              <div className="relative">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as BookSortOption)}
+                  className="appearance-none bg-gray-50 hover:bg-white border border-black/10 text-gray-800 text-xs rounded-xl px-3.5 py-2.5 pr-8 focus:outline-none focus:border-[#200441] focus:ring-2 focus:ring-[#200441]/15 transition font-medium cursor-pointer"
+                >
+                  <option value="default">Sort: Curricular Order</option>
+                  <option value="title-asc">Title: A to Z</option>
+                  <option value="title-desc">Title: Z to A</option>
+                  <option value="year-desc">Year: Newest First</option>
+                  <option value="year-asc">Year: Oldest First</option>
+                </select>
+                <FiChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Mobile Filter Toggle Button */}
+            <div className="flex md:hidden items-center justify-between gap-2">
               <button
-                key={area}
                 type="button"
-                onClick={() => setSelectedCoreArea(area)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition cursor-pointer ${
-                  selectedCoreArea === area
-                    ? 'bg-[#200441] text-white shadow-xs'
-                    : 'bg-white/80 hover:bg-white text-gray-700 border border-black/10'
+                onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
+                className={`flex-1 py-2.5 px-4 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer ${
+                  activeFiltersCount > 0
+                    ? 'bg-[#200441] text-white border-[#200441]'
+                    : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border-black/10'
                 }`}
               >
-                {area}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-          {/* Left / Center Main Content: Suggested Read + Top Reads (8 cols) */}
-          <div className="lg:col-span-8 flex flex-col gap-8 sm:gap-10">
-            {/* Section 1: Suggested Read */}
-            <section>
-              <div className="flex items-center justify-between mb-4 sm:mb-5">
-                <div className="flex items-baseline gap-2.5">
-                  <h2 className="font-heading text-xl sm:text-2xl font-medium text-gray-950 tracking-tight">
-                    {searchQuery
-                      ? `Search Results for "${searchQuery}"`
-                      : selectedFaculty !== 'All Faculties'
-                      ? `${selectedFaculty} — Suggested Reads`
-                      : 'Suggested Read'}
-                  </h2>
-                  <span className="text-xs font-mono text-gray-400 font-medium">
-                    ({filteredBooks.length} available)
+                <FiSliders className="w-3.5 h-3.5" />
+                <span>Filter & Sort</span>
+                {activeFiltersCount > 0 && (
+                  <span className="px-1.5 py-0.2 rounded-full bg-[#FDE88C] text-[#200441] text-[10px] font-mono font-bold">
+                    {activeFiltersCount}
                   </span>
-                </div>
+                )}
+              </button>
 
-                <Link
-                  to="/library/dashboard/catalogue"
-                  className="text-xs sm:text-sm font-medium text-gray-700 hover:text-[#200441] transition inline-flex items-center gap-1 group"
+              {activeFiltersCount > 0 && (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="p-2.5 rounded-xl border border-black/10 text-gray-600 hover:text-red-600 hover:bg-red-50 transition cursor-pointer"
+                  title="Reset filters"
                 >
-                  <span>View all</span>
-                  <FiArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-              </div>
-
-              {filteredBooks.length === 0 ? (
-                <div className="bg-white rounded-2xl p-10 text-center border border-black/5 shadow-xs">
-                  <FiBookOpen className="w-8 h-8 text-gray-400 mx-auto mb-3" />
-                  <h3 className="font-heading text-base font-medium text-gray-800">
-                    No books found matching criteria
-                  </h3>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Try clearing your search keyword or switching faculty and department filters.
-                  </p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                  <AnimatePresence mode="popLayout">
-                    {suggestedReads.map((book, idx) => (
-                      <DynamicBookCard
-                        key={book.id}
-                        book={book}
-                        index={idx}
-                        onReadBook={(b) => setActiveReadingBook(b)}
-                      />
-                    ))}
-                  </AnimatePresence>
-                </div>
+                  <FiRotateCcw className="w-4 h-4" />
+                </button>
               )}
-            </section>
-
-            {/* Section 2: Top Reads / Core Departmental Textbooks */}
-            {filteredBooks.length > 0 && (
-              <section>
-                <div className="flex items-center justify-between mb-4 sm:mb-5">
-                  <h2 className="font-heading text-xl sm:text-2xl font-medium text-gray-950 tracking-tight">
-                    {selectedDept !== 'All Departments'
-                      ? `${selectedDept} — Top Reads`
-                      : 'Top Reads'}
-                  </h2>
-                  <Link
-                    to="/library/dashboard/catalogue"
-                    className="text-xs sm:text-sm font-medium text-gray-700 hover:text-[#200441] transition inline-flex items-center gap-1 group"
-                  >
-                    <span>View all</span>
-                    <FiArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                  <AnimatePresence mode="popLayout">
-                    {topReads.map((book, idx) => (
-                      <DynamicBookCard
-                        key={book.id}
-                        book={book}
-                        index={idx + 4}
-                        onReadBook={(b) => setActiveReadingBook(b)}
-                      />
-                    ))}
-                  </AnimatePresence>
-                </div>
-              </section>
-            )}
+            </div>
           </div>
 
-          {/* Right Sidebar: Recently Added (4 cols) - Sticky Top */}
-          <div className="lg:col-span-4 flex flex-col h-fit">
-            <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-black/5 sticky top-0 sm:top-2">
-              <div className="flex items-center justify-between pb-3.5 mb-2 border-b border-gray-100">
-                <h3 className="font-heading text-base sm:text-lg font-medium text-gray-950 flex items-center gap-2">
-                  <FiBookOpen className="w-4 h-4 text-[#200441]" />
-                  <span>Recently Added</span>
-                </h3>
-                <span className="text-[11px] font-mono text-gray-400">
-                  {allBooks.length} titles
-                </span>
-              </div>
+          {/* Expandable Mobile Filter Tray */}
+          <AnimatePresence>
+            {isMobileFiltersOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="md:hidden pt-3 border-t border-gray-100 flex flex-col gap-3 overflow-hidden"
+              >
+                <div>
+                  <label className="text-[11px] font-semibold text-gray-600 uppercase font-mono block mb-1">
+                    Select Faculty
+                  </label>
+                  <select
+                    value={selectedFaculty}
+                    onChange={(e) => setSelectedFaculty(e.target.value)}
+                    className="w-full bg-gray-50 border border-black/10 text-gray-900 text-xs rounded-xl p-2.5"
+                  >
+                    {availableFaculties.map((fac) => (
+                      <option key={fac} value={fac}>{fac}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div className="flex flex-col gap-2 divide-y divide-gray-50">
-                {allBooks.map((book, idx) => (
-                  <RecentlyAddedItem
-                    key={book.id}
-                    book={book}
-                    index={idx}
-                    onReadBook={(b) => setActiveReadingBook(b)}
-                  />
+                <div>
+                  <label className="text-[11px] font-semibold text-gray-600 uppercase font-mono block mb-1">
+                    Select Academic Department
+                  </label>
+                  <select
+                    value={selectedDept}
+                    onChange={(e) => setSelectedDept(e.target.value)}
+                    className="w-full bg-gray-50 border border-black/10 text-gray-900 text-xs rounded-xl p-2.5"
+                  >
+                    {availableDepartments.map((dept) => (
+                      <option key={dept} value={dept}>{dept}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-gray-600 uppercase font-mono block mb-1">
+                    Sort Textbooks By
+                  </label>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as BookSortOption)}
+                    className="w-full bg-gray-50 border border-black/10 text-gray-900 text-xs rounded-xl p-2.5"
+                  >
+                    <option value="default">Curricular Order (Default)</option>
+                    <option value="title-asc">Title: A to Z</option>
+                    <option value="title-desc">Title: Z to A</option>
+                    <option value="year-desc">Year: Newest First</option>
+                    <option value="year-asc">Year: Oldest First</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileFiltersOpen(false)}
+                    className="flex-1 py-2 rounded-xl bg-[#200441] text-white text-xs font-semibold cursor-pointer"
+                  >
+                    Apply Filters
+                  </button>
+                  {activeFiltersCount > 0 && (
+                    <button
+                      type="button"
+                      onClick={resetFilters}
+                      className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium cursor-pointer"
+                    >
+                      Reset
+                    </button>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Dynamic Core Academic Area Filter Pills */}
+          {availableCoreAreas.length > 2 && (
+            <div className="pt-2 border-t border-gray-100">
+              <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1">
+                <span className="text-[11px] font-mono uppercase text-gray-500 font-semibold shrink-0 mr-1">
+                  Disciplines:
+                </span>
+                {availableCoreAreas.map((area) => (
+                  <button
+                    key={area}
+                    type="button"
+                    onClick={() => setSelectedCoreArea(area)}
+                    className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition cursor-pointer shrink-0 ${
+                      selectedCoreArea === area
+                        ? 'bg-[#200441] text-white shadow-xs font-semibold'
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    }`}
+                  >
+                    {area}
+                  </button>
                 ))}
               </div>
             </div>
+          )}
+
+          {/* Active Filter Tags & Results Counter */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5 pt-2 border-t border-gray-100 text-xs">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-gray-500 font-medium">
+                Showing <strong className="text-gray-900">{filteredBooks.length}</strong> of {allBooks.length} textbooks
+              </span>
+
+              {/* Active Removable Tags */}
+              {searchQuery && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECE0EF] text-[#200441] font-medium text-[11px]">
+                  <span>"{searchQuery}"</span>
+                  <button type="button" onClick={() => setSearchQuery('')} className="hover:text-red-600 cursor-pointer">
+                    <FiX className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {selectedFaculty !== 'All Faculties' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 border border-purple-200/50 font-medium text-[11px]">
+                  <span>{selectedFaculty}</span>
+                  <button type="button" onClick={() => setSelectedFaculty('All Faculties')} className="hover:text-red-600 cursor-pointer">
+                    <FiX className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {selectedDept !== 'All Departments' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-900 border border-indigo-200/50 font-medium text-[11px]">
+                  <span>{selectedDept}</span>
+                  <button type="button" onClick={() => setSelectedDept('All Departments')} className="hover:text-red-600 cursor-pointer">
+                    <FiX className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {selectedCoreArea !== 'All Areas' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200/50 font-medium text-[11px]">
+                  <span>{selectedCoreArea}</span>
+                  <button type="button" onClick={() => setSelectedCoreArea('All Areas')} className="hover:text-red-600 cursor-pointer">
+                    <FiX className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {sortBy !== 'default' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800 font-medium text-[11px]">
+                  <span>Sorted</span>
+                  <button type="button" onClick={() => setSortBy('default')} className="hover:text-red-600 cursor-pointer">
+                    <FiX className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+            </div>
+
+            {activeFiltersCount > 0 && (
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="inline-flex items-center gap-1 text-xs text-[#200441] hover:text-red-600 font-medium transition cursor-pointer underline"
+              >
+                <FiRotateCcw className="w-3 h-3" />
+                <span>Reset All Filters</span>
+              </button>
+            )}
           </div>
+        </div>
+
+        {/* ── UNIFIED SINGULAR BOOK FEED ───────────────────────── */}
+        <div className="w-full flex flex-col gap-6">
+          {filteredBooks.length === 0 ? (
+            <div className="bg-white rounded-3xl p-12 text-center border border-black/5 shadow-xs max-w-lg mx-auto my-6">
+              <FiBookOpen className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+              <h3 className="font-heading text-base sm:text-lg font-medium text-gray-900">
+                No textbooks match your criteria
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1.5 leading-relaxed">
+                Try adjusting your search keyword or clearing the faculty and department filters.
+              </p>
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#200441] text-white text-xs font-semibold hover:bg-[#35145D] transition shadow-xs cursor-pointer"
+              >
+                <FiRotateCcw className="w-3.5 h-3.5" />
+                <span>Reset All Filters</span>
+              </button>
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4.5 sm:gap-5">
+                <AnimatePresence mode="popLayout">
+                  {visibleBooks.map((book, idx) => (
+                    <BookCard
+                      key={book.id}
+                      book={book}
+                      index={idx}
+                    />
+                  ))}
+                </AnimatePresence>
+              </div>
+
+              {/* Load More Button if remaining titles exist */}
+              {displayLimit < filteredBooks.length && (
+                <div className="flex flex-col items-center justify-center pt-8 pb-4 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setDisplayLimit((prev) => prev + 24)}
+                    className="px-6 py-3 rounded-2xl bg-[#200441] hover:bg-[#320864] text-white font-medium text-xs sm:text-sm shadow-md transition-all active:scale-98 cursor-pointer flex items-center gap-2"
+                  >
+                    <span>Load More Titles</span>
+                    <span className="text-white/60 text-xs font-mono">
+                      (+{Math.min(24, filteredBooks.length - displayLimit)})
+                    </span>
+                  </button>
+                  <p className="text-[11px] text-gray-400 font-mono">
+                    Showing {visibleBooks.length} of {filteredBooks.length} books
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </LibraryDashboardLayout>

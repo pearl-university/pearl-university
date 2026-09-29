@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "compress:images": "node scripts/compress-images.mjs"
+    "compress:images": "node scripts/compress-images.mjs",
+    "compress:books": "python3 scripts/clean_compress_large_books.py",
+    "sync:books": "node scripts/sync_library_books.mjs",
+    "upload:books": "node scripts/upload_books_to_supabase.mjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",

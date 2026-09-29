@@ -2,30 +2,31 @@ import type { FC } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FiHome,
   FiBook,
-  FiClock,
+  FiLayers,
+  FiUsers,
+  FiCompass,
   FiBookmark,
   FiSettings,
-  FiLogOut,
   FiChevronLeft,
   FiChevronRight,
 } from 'react-icons/fi'
 import logoSvg from '../../../assets/logo.svg'
-import { useAuth } from '../../../context/AuthContext'
+import { useLibraryContext } from '../../../context/LibraryContext'
 
 interface NavItemConfig {
   name: string
   href: string
-  icon: typeof FiHome
+  icon: typeof FiBook
   badge?: string
 }
 
 const PRIMARY_NAV: NavItemConfig[] = [
-  { name: 'Home', href: '/library/dashboard', icon: FiHome },
-  { name: 'Library', href: '/library/dashboard/catalogue', icon: FiBook },
-  { name: 'Reads', href: '/library/dashboard/reads', icon: FiClock },
-  { name: 'Saved', href: '/library/dashboard/saved', icon: FiBookmark },
+  { name: 'Catalogue', href: '/library/dashboard', icon: FiBook },
+  { name: 'Faculties & Depts', href: '/library/dashboard/faculties', icon: FiLayers },
+  { name: 'Authors Directory', href: '/library/dashboard/authors', icon: FiUsers },
+  { name: 'Curricula Spotlight', href: '/library/dashboard/spotlight', icon: FiCompass },
+  { name: 'My Bookshelf', href: '/library/dashboard/saved', icon: FiBookmark },
 ]
 
 export interface LibrarySidebarProps {
@@ -40,14 +41,8 @@ export const LibrarySidebar: FC<LibrarySidebarProps> = ({
   onItemClick,
 }) => {
   const location = useLocation()
-  const { logout } = useAuth()
+  const { savedCount } = useLibraryContext()
 
-  const handleLogout = async () => {
-    const success = await logout()
-    if (success) {
-      onItemClick?.()
-    }
-  }
 
   return (
     <motion.aside
@@ -167,10 +162,19 @@ export const LibrarySidebar: FC<LibrarySidebarProps> = ({
                   )}
                 </AnimatePresence>
 
-                {!isCollapsed && item.badge && (
+                {!isCollapsed && item.name === 'My Bookshelf' && savedCount > 0 ? (
+                  <span className="ml-auto text-[10px] bg-[#FDE88C] text-[#200441] font-bold px-2 py-0.5 rounded-full font-mono shadow-xs">
+                    {savedCount}
+                  </span>
+                ) : !isCollapsed && item.badge ? (
                   <span className="ml-auto text-[10px] bg-white/20 text-white px-2 py-0.5 rounded-full font-mono">
                     {item.badge}
                   </span>
+                ) : null}
+
+                {/* Collapsed dot indicator for saved books */}
+                {isCollapsed && item.name === 'My Bookshelf' && savedCount > 0 && (
+                  <span className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-[#FDE88C] shadow-xs ring-2 ring-[#1B0A37]" />
                 )}
 
                 {/* Desktop Collapsed Hover Tooltip */}
@@ -195,13 +199,13 @@ export const LibrarySidebar: FC<LibrarySidebarProps> = ({
         </nav>
       </div>
 
-      {/* Bottom Actions: Settings and Logout with Hover Tooltips */}
+      {/* Bottom Actions: Settings with Hover Tooltip */}
       <div className="p-3 pb-6 flex flex-col gap-1.5 border-t border-white/5 overflow-visible">
         {/* Settings with Collapsed Hover Tooltip */}
         <Link
-          to="/library/dashboard/settings"
+          to="/library/dashboard/saved"
           onClick={onItemClick}
-          title={isCollapsed ? 'Settings' : undefined}
+          title={isCollapsed ? 'My Bookshelf' : undefined}
           className={`relative flex items-center px-3.5 py-3 rounded-xl font-medium text-sm text-white/60 hover:text-white hover:bg-white/5 transition-all duration-200 group ${
             isCollapsed ? 'justify-center' : 'gap-4'
           }`}
@@ -231,41 +235,6 @@ export const LibrarySidebar: FC<LibrarySidebarProps> = ({
             </div>
           )}
         </Link>
-
-        {/* Logout with Collapsed Hover Tooltip */}
-        <button
-          type="button"
-          onClick={handleLogout}
-          title={isCollapsed ? 'Logout' : undefined}
-          className={`relative w-full flex items-center px-3.5 py-3 rounded-xl font-medium text-sm text-[#F87171] hover:text-[#EF4444] hover:bg-red-500/10 transition-all duration-200 text-left cursor-pointer group ${
-            isCollapsed ? 'justify-center' : 'gap-4'
-          }`}
-        >
-          <FiLogOut className="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5 stroke-[1.8]" />
-          <AnimatePresence>
-            {!isCollapsed && (
-              <motion.span
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: 'auto' }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.2 }}
-                className="tracking-wide overflow-hidden whitespace-nowrap"
-              >
-                Logout
-              </motion.span>
-            )}
-          </AnimatePresence>
-
-          {isCollapsed && (
-            <div
-              role="tooltip"
-              className="absolute left-full ml-4 px-3 py-1.5 bg-red-950 text-red-200 text-xs font-heading font-medium rounded-xl whitespace-nowrap shadow-2xl border border-red-500/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-x-1 group-hover:translate-x-0 transition-all duration-200 pointer-events-none z-[100] flex items-center"
-            >
-              <span>Logout</span>
-              <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-red-950" />
-            </div>
-          )}
-        </button>
       </div>
     </motion.aside>
   )
