@@ -37,6 +37,7 @@ export const LibraryDashboardPage: FC = () => {
     sortBy,
     setSortBy,
     resetFilters,
+    totalBooksCount,
   } = useLibraryFilter()
 
   const { openReader, readingHistory } = useLibraryContext()
@@ -66,7 +67,7 @@ export const LibraryDashboardPage: FC = () => {
         <title>e-Library Catalogue | Pearl University</title>
         <meta
           name="description"
-          content="Access 611 university textbooks across all faculties and academic departments at Pearl University."
+          content={`Access ${totalBooksCount} university textbooks across all faculties and academic departments at Pearl University.`}
         />
       </Helmet>
 
@@ -76,7 +77,7 @@ export const LibraryDashboardPage: FC = () => {
           <div className="relative z-10 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#FDE88C] text-xs font-semibold mb-3 border border-white/10">
               <HiSparkles className="w-3.5 h-3.5" />
-              <span>OFFICIAL ACADEMIC REPOSITORY • 611 TEXTBOOKS</span>
+              <span>OFFICIAL ACADEMIC REPOSITORY • {totalBooksCount} TEXTBOOKS</span>
             </div>
             <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-white leading-tight">
               Academic Textbook Catalogue

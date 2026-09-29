@@ -37,8 +37,9 @@ export interface BookEntryDefinition {
 
 // Full Academic Textbook Catalog with exact bucket storage paths
 export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Allied and Health Sciences",
+faculty: "Faculty of Allied and Health Sciences",
     department: "Health Care Administration and Hospital Management",
     coreArea: "Clinical Services Leadership",
     fileName: "Principles and Practice of Medicine.pdf",
@@ -49,7 +50,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2024",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Clinical Services Leadership at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Allied and Health Sciences",
     department: "Health Care Administration and Hospital Management",
@@ -89,8 +90,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Emergency Health Data at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Allied and Health Sciences",
+faculty: "Faculty of Allied and Health Sciences",
     department: "Health Information Management",
     coreArea: "Health Informatics Research",
     fileName: "IEEE Journal of Biomedical and Health Informatics.pdf",
@@ -101,7 +103,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2024",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Health Informatics Research at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Allied and Health Sciences",
     department: "Health Information Management",
@@ -388,8 +390,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Compiler Design & Theory at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Compiler Design & Theory",
     fileName: "Introduction to Automata Theory, Languages and Computation.pdf",
@@ -400,7 +403,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "1979",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Compiler Design & Theory at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -418,8 +421,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Compiler Design & Theory",
-    fileName: "Introduction to Compiler Design (Torben \u00c6gidius Mogensen (auth.)).pdf",
-    storagePath: "faculty of computing/Computer Science/Compiler Design & Theory/Introduction to Compiler Design (Torben \u00c6gidius Mogensen (auth.)).pdf",
+    fileName: "Introduction to Compiler Design (Torben Aegidius Mogensen (auth.)).pdf",
+    storagePath: "faculty of computing/Computer Science/Compiler Design & Theory/Introduction to Compiler Design (Torben Aegidius Mogensen (auth.)).pdf",
     title: "Introduction to Compiler Design (Torben \u00c6gidius Mogensen (auth.))",
     author: "0002624",
     extraMeta: "Springer \u2022 Computer Science Core Edition",
@@ -622,8 +625,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Computer Networks & Telecommunications at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Computer Networks & Telecommunications",
     fileName: "Data Communications and Networking (Behrouz A. Forouzan) 5th ed.pdf",
@@ -634,7 +638,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2012",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Computer Networks & Telecommunications at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -912,8 +916,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Computer Networks & Telecommunications",
-    fileName: "Wireless.Network.Simulation Henry Za\u0301rate Ceballos.pdf",
-    storagePath: "faculty of computing/Computer Science/Computer Networks & Telecommunications/Wireless.Network.Simulation Henry Za\u0301rate Ceballos.pdf",
+    fileName: "Wireless.Network.Simulation Henry Zarate Ceballos.pdf",
+    storagePath: "faculty of computing/Computer Science/Computer Networks & Telecommunications/Wireless.Network.Simulation Henry Zarate Ceballos.pdf",
     title: "Wireless.Network.Simulation Henry Za\u0301rate Ceballos",
     author: "Academic Faculty & Research Council",
     extraMeta: "Springer \u2022 Computer Science Core Edition",
@@ -921,8 +925,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Computer Networks & Telecommunications at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Computer Programming",
     fileName: "Digital-Design-4th-ed-M-Morris-Mano.pdf",
@@ -933,7 +938,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2009",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Computer Programming at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -1688,8 +1693,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Database Design & Management at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Database Design & Management",
     fileName: "Database Systems A Pragmatic Approach -3rd.pdf",
@@ -1700,7 +1706,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2022",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Database Design & Management at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -2225,8 +2231,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Foundations of Computing",
-    fileName: "Advances in Artificial Intelligence \u2013 SBIA 2004.pdf",
-    storagePath: "faculty of computing/Computer Science/Foundations of Computing/Advances in Artificial Intelligence \u2013 SBIA 2004.pdf",
+    fileName: "Advances in Artificial Intelligence - SBIA 2004.pdf",
+    storagePath: "faculty of computing/Computer Science/Foundations of Computing/Advances in Artificial Intelligence - SBIA 2004.pdf",
     title: "Advances in Artificial Intelligence \u2013 SBIA 2004",
     author: "Ana L. C. Bazzan, Sofiane Labidi",
     extraMeta: "Academic Press \u2022 Computer Science Core Edition",
@@ -2364,8 +2370,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Foundations of Computing",
     fileName: "Artificial Intelligence, Structures And Strategies For Complex Problem Solving 3rd ed.pdf",
@@ -2376,7 +2383,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2000",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -3161,8 +3168,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Foundations of Computing",
-    fileName: "Human Work Interaction Design A Platform for Theory and Action (Human\u2013Computer Interaction Series).pdf",
-    storagePath: "faculty of computing/Computer Science/Foundations of Computing/Human Work Interaction Design A Platform for Theory and Action (Human\u2013Computer Interaction Series).pdf",
+    fileName: "Human Work Interaction Design A Platform for Theory and Action (Human-Computer Interaction Series).pdf",
+    storagePath: "faculty of computing/Computer Science/Foundations of Computing/Human Work Interaction Design A Platform for Theory and Action (Human-Computer Interaction Series).pdf",
     title: "Human Work Interaction Design A Platform for Theory and Action (Human\u2013Computer Interaction Series)",
     author: "0014431",
     extraMeta: "Springer \u2022 Computer Science Core Edition",
@@ -3300,8 +3307,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Foundations of Computing",
     fileName: "Introduction to Visual Computing Core Concepts in Computer Vision, Graphics, and Image Processing.pdf",
@@ -3312,7 +3320,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2018",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -3898,8 +3906,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Foundations of Computing",
     fileName: "Prentice Hall.pdf",
@@ -3910,7 +3919,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2004",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -4509,8 +4518,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "Foundations of Computing",
     fileName: "Zero To Mastery In Computer Graphics- No.1 Computer Graphics Book To Become Zero To Hero In Computer Graphics.pdf",
@@ -4521,7 +4531,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2022",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Computer Science",
@@ -4535,8 +4545,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Foundations of Computing at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Computer Science",
     coreArea: "IoT & Distributed Systems",
     fileName: "IEEE Internet of Things Journal.pdf",
@@ -4547,7 +4558,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2024",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in IoT & Distributed Systems at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Cyber Security",
@@ -4743,8 +4754,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Security Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Cyber Security",
     coreArea: "Wireless & Mobile Security",
     fileName: "IEEE Transactions on Mobile Computing.pdf",
@@ -4755,7 +4767,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "1993",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Wireless & Mobile Security at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Data Science",
@@ -5111,8 +5123,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Data Science",
     coreArea: "Data Science & Machine Learning",
-    fileName: "Programming with MATLAB for Scientists A Beginner\u2019s Introduction -Eugeniy E. Mikhailov.pdf",
-    storagePath: "faculty of computing/Data Science/Data Science & Machine Learning/Programming with MATLAB for Scientists A Beginner\u2019s Introduction -Eugeniy E. Mikhailov.pdf",
+    fileName: "Programming with MATLAB for Scientists A Beginners Introduction -Eugeniy E. Mikhailov.pdf",
+    storagePath: "faculty of computing/Data Science/Data Science & Machine Learning/Programming with MATLAB for Scientists A Beginners Introduction -Eugeniy E. Mikhailov.pdf",
     title: "Programming with MATLAB for Scientists A Beginner\u2019s Introduction  Eugeniy E. Mikhailov",
     author: "Eugeniy E. Mikhailov",
     extraMeta: "Academic Press \u2022 Data Science Core Edition",
@@ -5189,8 +5201,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Data Science",
     coreArea: "Machine Learning & Big Data",
-    fileName: "A Python Data Analyst\u2019s Toolkit Learn Python And Python based Libraries.pdf",
-    storagePath: "faculty of computing/Data Science/Machine Learning & Big Data/A Python Data Analyst\u2019s Toolkit Learn Python And Python based Libraries.pdf",
+    fileName: "A Python Data Analysts Toolkit Learn Python And Python based Libraries.pdf",
+    storagePath: "faculty of computing/Data Science/Machine Learning & Big Data/A Python Data Analysts Toolkit Learn Python And Python based Libraries.pdf",
     title: "A Python Data Analyst\u2019s Toolkit Learn Python And Python based Libraries",
     author: "Gayathri Rajagopalan",
     extraMeta: "Springer \u2022 Data Science Core Edition",
@@ -5384,8 +5396,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Data Science",
     coreArea: "Numerical Analysis & Scientific Computing",
-    fileName: "Numerical Methods for Engineers and Scientists Using MATLAB\u00ae.pdf",
-    storagePath: "faculty of computing/Data Science/Numerical Analysis & Scientific Computing/Numerical Methods for Engineers and Scientists Using MATLAB\u00ae.pdf",
+    fileName: "Numerical Methods for Engineers and Scientists Using MATLAB.pdf",
+    storagePath: "faculty of computing/Data Science/Numerical Analysis & Scientific Computing/Numerical Methods for Engineers and Scientists Using MATLAB.pdf",
     title: "Numerical Methods for Engineers and Scientists Using MATLAB\u00ae",
     author: "Academic Faculty & Research Council",
     extraMeta: "Academic Press \u2022 Data Science Core Edition",
@@ -5397,8 +5409,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Data Science",
     coreArea: "Numerical Analysis & Scientific Computing",
-    fileName: "PRACTICAL MATLAB\u00ae FOR ENGINEERS PRACTICAL MATLAB.pdf",
-    storagePath: "faculty of computing/Data Science/Numerical Analysis & Scientific Computing/PRACTICAL MATLAB\u00ae FOR ENGINEERS PRACTICAL MATLAB.pdf",
+    fileName: "PRACTICAL MATLAB FOR ENGINEERS PRACTICAL MATLAB.pdf",
+    storagePath: "faculty of computing/Data Science/Numerical Analysis & Scientific Computing/PRACTICAL MATLAB FOR ENGINEERS PRACTICAL MATLAB.pdf",
     title: "PRACTICAL MATLAB\u00ae FOR ENGINEERS PRACTICAL MATLAB",
     author: "Misza Kalechman",
     extraMeta: "Academic Press \u2022 Data Science Core Edition",
@@ -6489,8 +6501,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Software Engineering",
     coreArea: "Software Systems & Engineering",
-    fileName: "Clean Architecture A Craftsman\u2019s Guide to Software Structure and Design.pdf",
-    storagePath: "faculty of computing/Software Engineering/Software Systems & Engineering/Clean Architecture A Craftsman\u2019s Guide to Software Structure and Design.pdf",
+    fileName: "Clean Architecture A Craftsmans Guide to Software Structure and Design.pdf",
+    storagePath: "faculty of computing/Software Engineering/Software Systems & Engineering/Clean Architecture A Craftsmans Guide to Software Structure and Design.pdf",
     title: "Clean Architecture A Craftsman\u2019s Guide to Software Structure and Design",
     author: "Robert C. Martin",
     extraMeta: "Academic Press \u2022 Software Engineering Core Edition",
@@ -6550,8 +6562,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Software Engineering",
     coreArea: "Software Systems & Engineering",
     fileName: "Computer.Organization.and.Design.The.Hardware.Software.Interface.3rd.Ed.2004.pdf",
@@ -6562,7 +6575,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2006",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Software Engineering",
@@ -6758,8 +6771,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Software Engineering",
     coreArea: "Software Systems & Engineering",
     fileName: "Fundamentals of Software Engineering, Fifth Edition.pdf",
@@ -6770,7 +6784,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "1600",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Software Engineering",
@@ -6836,8 +6850,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Software Engineering",
     coreArea: "Software Systems & Engineering",
     fileName: "Head First C# A Learner s Guide to Real-World Programming with C#, XAML, and .NET.pdf",
@@ -6848,7 +6863,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2013",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Software Engineering",
@@ -7438,8 +7453,8 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     faculty: "Faculty of Computing",
     department: "Software Engineering",
     coreArea: "Software Systems & Engineering",
-    fileName: "Python\u00ae All in One For Dummies\u00ae, 2nd Ed John Shovic Alan.pdf",
-    storagePath: "faculty of computing/Software Engineering/Software Systems & Engineering/Python\u00ae All in One For Dummies\u00ae, 2nd Ed John Shovic Alan.pdf",
+    fileName: "Python All in One For Dummies, 2nd Ed John Shovic Alan.pdf",
+    storagePath: "faculty of computing/Software Engineering/Software Systems & Engineering/Python All in One For Dummies, 2nd Ed John Shovic Alan.pdf",
     title: "Python\u00ae All in One For Dummies\u00ae, 2nd Ed John Shovic Alan",
     author: "Zamzar",
     extraMeta: "Wiley \u2022 Software Engineering Core Edition",
@@ -7486,8 +7501,9 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
   },
+  /* [DEFERRED_OVERSIZED_BOOK > 50MB]
   {
-    faculty: "Faculty of Computing",
+faculty: "Faculty of Computing",
     department: "Software Engineering",
     coreArea: "Software Systems & Engineering",
     fileName: "Requirements Engineering From System Goals to UML Models to Software Specifications.pdf",
@@ -7498,7 +7514,7 @@ export const OFFICIAL_BOOK_CATALOG: BookEntryDefinition[] = [
     publishedYear: "2014",
     description: "Comprehensive university core textbook covering foundational principles and advanced practice in Software Systems & Engineering at Pearl University.",
     coverFallbackUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&auto=format&fit=crop&q=80",
-  },
+    }, */
   {
     faculty: "Faculty of Computing",
     department: "Software Engineering",

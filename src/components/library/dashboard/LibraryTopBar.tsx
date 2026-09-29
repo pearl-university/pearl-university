@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fi'
 import { HiSparkles, HiAcademicCap } from 'react-icons/hi2'
 import { useLibraryContext } from '../../../context/LibraryContext'
+import { LOCAL_BOOKS_LIBRARY } from '../../../utils/bookScanner'
 
 interface LibraryTopBarProps {
   onToggleMobileMenu: () => void
@@ -52,7 +53,7 @@ export const LibraryTopBar: FC<LibraryTopBarProps> = ({
             </span>
             <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/80 text-[10px] font-mono text-purple-900 border border-purple-200/60 shrink-0 font-medium">
               <HiSparkles className="w-3 h-3 text-[#200441]" />
-              <span>611 TEXTBOOKS</span>
+              <span>{LOCAL_BOOKS_LIBRARY.length} TEXTBOOKS</span>
             </span>
           </div>
         </div>

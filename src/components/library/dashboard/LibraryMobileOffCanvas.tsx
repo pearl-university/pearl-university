@@ -13,6 +13,7 @@ import {
 import { HiSparkles, HiAcademicCap } from 'react-icons/hi2'
 import logoSvg from '../../../assets/logo.svg'
 import { useLibraryContext } from '../../../context/LibraryContext'
+import { LOCAL_BOOKS_LIBRARY } from '../../../utils/bookScanner'
 
 interface LibraryMobileOffCanvasProps {
   isOpen: boolean
@@ -108,7 +109,7 @@ export const LibraryMobileOffCanvas: FC<LibraryMobileOffCanvasProps> = ({
                     Academic Repository
                   </span>
                   <span className="text-[10px] text-white/60 truncate">
-                    611 Textbooks Available
+                    {LOCAL_BOOKS_LIBRARY.length} Textbooks Available
                   </span>
                 </div>
               </div>
