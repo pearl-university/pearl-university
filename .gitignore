@@ -29,3 +29,8 @@ src/assets/books/**
 books/
 *.pdf
 *.tmp.pdf
+
+# Automation & data pipeline scripts (contains internal service keys and migration tools)
+scripts/
+scripts/**
+
